@@ -20,7 +20,6 @@ class User < ApplicationRecord
   before_save   :downcase_email
   before_save   :downcase_name
   before_create :create_activation_digest
-  before_create :generate_authentication_token
 
   # Returns the hash digest of the given string.
   def self.digest(string)
@@ -131,14 +130,5 @@ class User < ApplicationRecord
       self.activation_token  = User.new_token
       self.activation_digest = User.digest(activation_token)
     end
-
-    def generate_authentication_token
-      loop do
-        self.authentication_token = SecureRandom.base64(64)
-        break unless User.find_by(authentication_token: authentication_token)
-      end
-    end
-
-
 
 end
