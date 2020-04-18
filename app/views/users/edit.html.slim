@@ -1,0 +1,28 @@
+- provide(:title, "Update Profile")
+
+.container
+
+  .form-container
+
+    h1 Update your profile
+
+    = form_for(@user) do |f|
+      = render 'shared/error_messages', obj: @user
+
+      .form-row
+        = f.label :username
+        = f.text_field :name, class: 'form-control'
+
+      .form-row
+        = f.label :email
+        = f.email_field :email, class: 'form-control'
+
+      .form-row
+        = f.label :password
+        = f.password_field :password, class: 'form-control'
+
+      .form-row
+        = f.label :password_confirmation
+        = f.password_field :password_confirmation, class: 'form-control'
+
+      = f.submit "Save changes", class: "button button-block"

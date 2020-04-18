@@ -1,0 +1,23 @@
+.container
+  h1
+    = @user.name_formatted
+
+  hr
+
+  .row
+    .col-md-4
+      h3 SPEEDS
+      ol
+        - @user.block_game_records.order("speed DESC").each do |r|
+          li
+            strong
+              = "#{r.speed} "
+            = "(#{r.score})"
+    .col-md-4
+      h3 SCORES
+      ol
+        - @user.block_game_records.order("score DESC").each do |r|
+          li
+            strong
+              = "#{r.score} "
+            = "(#{r.speed})"

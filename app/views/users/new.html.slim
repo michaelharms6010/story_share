@@ -1,0 +1,26 @@
+- provide(:title, "Sign Up")
+
+.container
+
+  .form-container
+    h1 Sign up
+    = form_for(@user) do |f|
+      = render 'shared/error_messages', obj: @user
+
+      .form-row
+        = f.label :username
+        = f.text_field :name, class: 'form-control text-field', placeholder: "Username"
+
+      .form-row
+        = f.label :email
+        = f.email_field :email, class: 'form-control text-field', placeholder: "Email"
+
+      .form-row
+        = f.label :password
+        = f.password_field :password, class: 'form-control text-field', placeholder: "Password"
+
+      .form-row
+        = f.label "Confirm password"
+        = f.password_field :password_confirmation, class: 'form-control text-field', placeholder: "Confirm password"
+
+      = f.submit "Create account", class: "button"
