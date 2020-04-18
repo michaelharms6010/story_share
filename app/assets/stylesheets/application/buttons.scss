@@ -1,0 +1,35 @@
+.button {
+  font-family: $font-family-sans-serif;
+  font-weight: 400 !important;
+  background-color: $color-link;
+  color: #fff;
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 14px;
+  vertical-align: middle;
+  padding: .7em 2em;
+  border-radius: 5px;
+  border: 0;
+  &:hover {
+    background-color: $color-link-hover;
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  &:focus {
+    color: #fff;
+  }
+}
+
+.button-block {
+  display: block;
+  width: 100%;
+}
+
+.button-disabled {
+  background-color: #999;
+  &:hover {
+    cursor: default;
+    background-color: #999;
+  }
+}
