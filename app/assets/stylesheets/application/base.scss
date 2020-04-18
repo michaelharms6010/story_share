@@ -1,0 +1,205 @@
+$font-family: "Helvetica Neue", "Helvetica", Arial, sans-serif;
+$font-family-serif: "Times New Roman", serif;
+
+$phone-max: 767px;
+$tablet-min: $phone-max + 1;
+$tablet-max: 991px;
+$desktop-min: $tablet-max + 1;
+
+$color-error: #911;
+
+$color-link: #4285f4;
+$color-link-hover: #3369e8;
+
+
+@mixin phone { @media screen and (max-width: $phone-max) { @content; } }
+@mixin tablet { @media screen and (min-width: $tablet-min) and (max-width: $tablet-max) { @content; } }
+@mixin desktop { @media screen and (min-width: $desktop-min) { @content; } }
+@mixin non-phone { @media screen and (min-width: $tablet-min) { @content; } }
+@mixin non-tablet { @media screen and (max-width: $phone-max), screen and (min-width: $desktop-min) { @content; } }
+@mixin non-desktop { @media screen and (max-width: $tablet-max) { @content; } }
+
+@mixin hidden-phone { @include phone { display: none !important; }}
+@mixin hidden-tablet { @include tablet { display: none !important; }}
+@mixin hidden-desktop { @include desktop { display: none !important; }}
+@mixin hidden-non-phone { @include non-phone { display: none !important; }}
+@mixin hidden-non-tablet { @include non-tablet { display: none !important; }}
+@mixin hidden-non-desktop { @include non-desktop { display: none !important; }}
+
+.hidden-phone { @include hidden-phone; }
+.hidden-tablet { @include hidden-tablet; }
+.hidden-desktop { @include hidden-desktop; }
+.hidden-non-phone { @include hidden-non-phone; }
+.hidden-non-tablet { @include hidden-non-tablet; }
+.hidden-non-desktop { @include hidden-non-desktop; }
+
+.hidden { display: none; }
+
+.text-center {
+  text-align: center;
+}
+.text-right {
+  text-align: right;
+}
+
+.portrait-circle {
+  border-radius: 50%;
+}
+
+.caption-centered {
+  font-size: 14px;
+  text-align: center;
+  display: block;
+  font-style: italic;
+  color: #666;
+  font-family: $font-family;
+  margin: 5px;
+}
+
+body {
+  font-family: $font-family;
+  color: #333;
+  margin: 0;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: $font-family;
+}
+
+p, ul, ol {
+  font-family: $font-family-serif;
+  font-weight: 400;
+  font-size: 18px;
+  letter-spacing: -0.02em;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  -webkit-overflow-scrolling: touch;
+  text-rendering: optimizeLegibility;
+  word-wrap: break-word;
+
+  margin: 0 0 30px 0;
+
+}
+
+em {
+  font-weight: 200;
+}
+
+li {
+  margin-bottom: 5px;
+}
+
+img {
+  width: 100%;
+}
+
+a {
+  font-weight: bold;
+  text-decoration: none;
+  color: $color-link;
+
+  &:hover, &:focus {
+    text-decoration: underline;
+    color: $color-link-hover;
+  }
+
+}
+
+iframe.embedded-youtube {
+  display: block;
+  margin: 20px auto;
+  @include phone {
+    width: 100%;
+  }
+}
+
+.link_inherit_color {
+  color: inherit;
+}
+
+.container {
+  max-width: 1000px;
+  padding: 10px;
+  display: block;
+  margin: auto;
+}
+
+.two-col {
+  display: inline-block;
+  width: calc(50% - 20px);
+  vertical-align: top;
+  padding: 10px;
+  @include phone {
+    width: calc(100% - 20px);
+  }
+}
+
+.two-thirds-col {
+  display: inline-block;
+  width: calc(67% - 20px);
+  vertical-align: top;
+  padding: 10px;
+  @include phone {
+    width: calc(100% - 20px);
+  }
+}
+
+.one-third-col {
+  display: inline-block;
+  width: calc(33% - 20px);
+  vertical-align: top;
+  padding: 10px;
+  @include phone {
+    width: calc(100% - 20px);
+  }
+}
+
+.image-inline {
+  display: inline-block;
+  width: initial;
+}
+
+.image-block-center {
+  display: block;
+  width: initial;
+  margin: auto;
+  max-width: 100%;
+  @include phone {
+    width: 100%;
+  }
+}
+
+.block-center {
+  display: block;
+  margin: auto;
+}
+
+.blockquote-code {
+  border: 1px solid #666;
+  padding: 15px;
+  background-color: #eee;
+  color: #666;
+  font-size: 12px;
+}
+
+
+// RAILS TUTORIAL
+
+$gray-medium-light: #eaeaea;
+
+@mixin box_sizing {
+  -moz-box-sizing:    border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing:         border-box;
+}
+
+/* miscellaneous */
+
+.debug_dump {
+  clear: both;
+  float: left;
+  width: 100%;
+  margin-top: 45px;
+  @include box_sizing;
+}
+
