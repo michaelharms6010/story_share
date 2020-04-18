@@ -1,0 +1,12 @@
+.navbar
+  .navbar-container
+    = link_to "Home", root_path, class:"navbar-cell"
+    / = link_to "Games", games_path, class:"navbar-cell"
+    / = link_to "Essays", essays_path, class:"navbar-cell"
+    / = link_to "About", about_path, class:"navbar-cell"
+    / - if logged_in?
+    /   = link_to "Log out", logout_path, method: "delete", class:"navbar-cell text-right"
+    /   / = link_to "Settings", edit_user_path(current_user)
+    / - else
+    /   = link_to "Log in", login_path, class:"navbar-cell text-right"
+.navbar-placeholder
