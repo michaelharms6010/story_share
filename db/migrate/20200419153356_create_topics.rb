@@ -8,5 +8,6 @@ class CreateTopics < ActiveRecord::Migration[6.0]
       t.timestamps null: false
 
     end
+    add_index :topics, :length
   end
 end

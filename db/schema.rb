@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 2020_04_19_153356) do
     t.string "length", default: "MEDIUM", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["length"], name: "index_topics_on_length"
   end
 
   create_table "users", force: :cascade do |t|
