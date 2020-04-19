@@ -1,6 +1,6 @@
 class StoriesController < ApplicationController
   before_action :logged_in_user,   only: [:show, :edit, :update, :create, :index, :new]
-  before_action :correct_user,     only: [:show, :edit, :update, :create, :index]
+  before_action :correct_user,     only: [:show, :edit, :update, :create]
 
   def new
     @story = Story.new
@@ -25,8 +25,6 @@ class StoriesController < ApplicationController
 
   def create
     @story = Story.new(story_params)
-    @story.published=true
-    @story.published_at=Time.now
     if @story.save
       flash[:success] = "Story created!"
       redirect_to stories_path
@@ -41,13 +39,13 @@ class StoriesController < ApplicationController
   end
 
   def index
-    @stories = Story.where(published: true).order("published_at DESC").paginate(page: params[:page], :per_page => 5)
+    @stories = current_user.stories
   end
 
   private
 
   def story_params
-    params.require(:story).permit(:title, :content)
+    params.require(:story).permit(:text, :word_count, :visibility)
   end
 
 end
