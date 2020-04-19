@@ -51,4 +51,10 @@ class StoriesController < ApplicationController
     params.require(:story).permit(:text, :word_count, :visibility, :topic_id)
   end
 
+
+  def correct_user
+    @story = Story.find(params[:id])
+    redirect_to(root_url) unless current_user?(@story.user)
+  end
+
 end

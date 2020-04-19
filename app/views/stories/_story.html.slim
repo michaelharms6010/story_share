@@ -1,11 +1,11 @@
 
 
 h2
-  = link_to "#{story.topic.title}", @story, class: "link_inherit_color"
+  = link_to "#{story.topic.prompt}", story, class: "link_inherit_color"
   p
     i
       = story.created_at.in_time_zone.strftime("%B %d, %Y, %l:%M%P")
 
-== story.text
+== story.html_text
 
 hr
