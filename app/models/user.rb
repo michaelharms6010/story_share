@@ -38,6 +38,15 @@ class User < ApplicationRecord
     !!VALID_EMAIL_REGEX.match(test_string)
   end
 
+  def stories_today
+    self.stories.where(created_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day)
+  end
+
+  # Get the next topic
+  def next_topic
+    Topic.where.not(id: self.stories.select(:topic_id)).first
+  end
+
   # Remembers a user in the database for use in persistent sessions.
   def remember
     self.remember_token = User.new_token

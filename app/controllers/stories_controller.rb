@@ -4,6 +4,7 @@ class StoriesController < ApplicationController
 
   def new
     @story = Story.new
+    @topic = current_user.next_topic
   end
 
   def edit

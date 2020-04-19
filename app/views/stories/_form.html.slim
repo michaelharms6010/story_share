@@ -1,12 +1,19 @@
-.form-row
-  label
-    = @story.topic.prompt
+- if !@topic.present?
 
-.form-row
-  label Content
-  = f.text_area :text, class: "text-area"
+  div
+    | No more topics! Check back tomorrow.
 
-- if @blog.id.present?
-  = f.submit "Update Story", class:"btn btn-primary"
 - else
-  = f.submit "Create Story", class:"btn btn-primary"
+
+  .form-row
+    label
+      = @topic.prompt
+
+  .form-row
+    label Content
+    = f.text_area :text, class: "text-area"
+
+  - if @story.id.present?
+    = f.submit "Update Story", class:"btn btn-primary"
+  - else
+    = f.submit "Create Story", class:"btn btn-primary"
