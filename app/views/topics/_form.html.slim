@@ -1,0 +1,12 @@
+.form-row
+  label Title
+  = f.text_field :Prompt, class: "text-field"
+
+.form-row
+  label Content
+  = f.select(:length, Topic.length_options)
+
+- if @topic.id.present?
+  = f.submit "Update Topic", class:"btn btn-primary"
+- else
+  = f.submit "Create Topic", class:"btn btn-primary"
