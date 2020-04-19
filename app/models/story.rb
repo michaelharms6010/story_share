@@ -10,5 +10,4 @@ class Story < ActiveRecord::Base
     self.text.gsub("\n", "</br>")
   end
 
-
 end
