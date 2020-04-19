@@ -1,16 +1,16 @@
 class User < ApplicationRecord
 
   has_many   :stories, dependent: :destroy
-  # has_many :friendships, dependent: :destroy
+  has_many :friendships, dependent: :destroy
 
-  # has_many :inverse_friendships, :class_name => "Friendship", :foreign_key => "friend_id", dependent: :destroy
+  has_many :inverse_friendships, :class_name => "Friendship", :foreign_key => "friend_id", dependent: :destroy
 
   attr_accessor :remember_token, :activation_token, :reset_token
 
   validates :name,  presence: true, length: { maximum: 20 , minimum: 3},
                     uniqueness: { case_sensitive: false }
-  validates_format_of :name, :with => /\A[a-zA-Z\d_-]*\z/i,
-  :message => "can only contain letters, numbers, underscores and dashes."
+  validates_format_of :name, :with => /\A[a-zA-Z\d]*\z/i,
+  :message => "can only contain letters and numbers."
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
   validates :email, presence: true, length: { maximum: 255 },
                     format: { with: VALID_EMAIL_REGEX },

@@ -1,4 +1,4 @@
-class Api::V2::FriendshipsController < Api::V2::BaseController
+class FriendshipsController < ApplicationController
   before_action :logged_in_user,   only: [:show, :update, :create, :index]
 
   def index
