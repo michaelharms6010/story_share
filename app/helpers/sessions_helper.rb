@@ -36,6 +36,19 @@ module SessionsHelper
     redirect_to(root_url) unless logged_in? && current_user.admin
   end
 
+  def logged_in_user
+    unless logged_in?
+      store_location
+      flash[:danger] = "Please log in."
+      redirect_to login_url
+    end
+  end
+
+  def correct_user
+    @user = User.find_by(name: params[:id])
+    redirect_to(root_url) unless current_user?(@user)
+  end
+
   # Returns the user corresponding to the remember token cookie.
   def current_user
     if (user_id = session[:user_id])
