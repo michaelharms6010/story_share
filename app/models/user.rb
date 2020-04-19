@@ -98,9 +98,9 @@ class User < ApplicationRecord
   #   Friendship.create_bidirectional_friendship(self, friend)
   # end
 
-  # def friends
-  #   User.joins(:inverse_friendships).where("friendships.user_id = #{self.id} AND friendships.confirmed = 't' AND friendships.rejected = 'f' AND friendships.accepted = 't'").order("users.name DESC")
-  # end
+  def friends
+    User.joins(:inverse_friendships).where("friendships.user_id = #{self.id} AND friendships.confirmed = 't' AND friendships.rejected = 'f' AND friendships.accepted = 't'").order("users.name DESC")
+  end
 
   # def friend_names_and_ids
   #   BlockGameProfile.where(id: self.friend_block_game_profile_ids).joins(:user)
