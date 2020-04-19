@@ -8,6 +8,12 @@ class FriendshipsController < ApplicationController
     if params[:search].present?
       @search_friend = User.find_by(name: params[:search].downcase)
       @search_friend = User.find_by(email: params[:search].downcase) if !@search_friend.present?
+      if @search_friend.present?
+        @friendship_request = Friendship.where(user_id: @user.id, friend_id: @search_friend.id)
+        if !@friendship_request.present?
+          @friendship = Friendship.new(user_id: @user.id, friend_id: @search_friend.id)
+        end
+      end
     end
   end
 

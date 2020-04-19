@@ -8,6 +8,12 @@ div
 - if @search_friend.present?
   div
     = @search_friend.name
+  div
+    - if @friendship_request.present?
+      | Request sent
+    - else
+      = form_for(@friendship) do |f|
+        = f.submit "Add Friend", class:"btn btn-primary"
 - elsif params[:search].present?
   div
     = "#{params[:search]} not found"
