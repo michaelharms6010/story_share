@@ -1,7 +1,7 @@
 .navbar
   .navbar-container
     = link_to "Home", root_path, class:"navbar-cell"
-    = link_to "Stories", root_path, class:"navbar-cell"
+    = link_to "Stories", stories_path, class:"navbar-cell"
     = link_to "Friends", root_path, class:"navbar-cell"
     / = link_to "About", about_path, class:"navbar-cell"
     - if logged_in?
