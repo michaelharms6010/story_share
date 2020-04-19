@@ -1,9 +1,17 @@
 class FriendshipsController < ApplicationController
-  before_action :logged_in_user,   only: [:show, :update, :create, :index]
+  before_action :logged_in_user,   only: [:show, :update, :create, :index, :search]
 
   def index
     @friends = current_user.friends
+    @user = current_user
+
+    if params[:search].present?
+      @search_friend = User.find_by(name: params[:search].downcase)
+      @search_friend = User.find_by(email: params[:search].downcase) if !@search_friend.present?
+    end
   end
+
+
 
   # def add_friend
   #   if !params[:friend_name].present?

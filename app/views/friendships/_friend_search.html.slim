@@ -1,0 +1,13 @@
+div
+  = form_tag friendships_path, method: "get" do
+    .form-row
+      = text_field_tag :search, params[:search]
+    .form-row
+      = submit_tag "Search", name: nil, class: "button button-search"
+
+- if @search_friend.present?
+  div
+    = @search_friend.name
+- elsif params[:search].present?
+  div
+    = "#{params[:search]} not found"
