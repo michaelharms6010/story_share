@@ -6,4 +6,9 @@ h1
 
 hr
 
+- if @friendship_requests.present?
+  h2 Requests
+
+  = @friend_requests
+
 = render @friends

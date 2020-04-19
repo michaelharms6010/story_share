@@ -5,6 +5,8 @@ class FriendshipsController < ApplicationController
     @friends = current_user.friends
     @user = current_user
 
+    @friendship_requests = Friendship.where(confirmed: false, friend_id: @user.id)
+
     if params[:search].present?
       @search_friend = User.find_by(name: params[:search].downcase)
       @search_friend = User.find_by(email: params[:search].downcase) if !@search_friend.present?
@@ -17,7 +19,19 @@ class FriendshipsController < ApplicationController
     end
   end
 
-
+  def create
+    @friendship = Friendship.new(friendship_params)
+    @friendship[:user_id] = current_user.id
+    if @friendship.save
+      flash[:success] = "Request sent!"
+      redirect_to friendships_path
+    else
+      @friendship.errors.full_messages.each do |error|
+        flash[:danger] = error
+      end
+      redirect_to friendships_path, search: params[:search]
+    end
+  end
 
   # def add_friend
   #   if !params[:friend_name].present?
