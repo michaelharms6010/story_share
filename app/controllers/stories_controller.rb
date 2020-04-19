@@ -1,6 +1,6 @@
 class StoriesController < ApplicationController
   before_action :logged_in_user,   only: [:show, :edit, :update, :create, :index, :new]
-  before_action :correct_user,     only: [:show, :edit, :update, :create]
+  before_action :correct_user,     only: [:show, :edit, :update]
 
   def new
     @story = Story.new
@@ -26,6 +26,8 @@ class StoriesController < ApplicationController
 
   def create
     @story = Story.new(story_params)
+    @story[:user_id] = current_user.id
+    pry
     if @story.save
       flash[:success] = "Story created!"
       redirect_to stories_path
@@ -46,7 +48,7 @@ class StoriesController < ApplicationController
   private
 
   def story_params
-    params.require(:story).permit(:text, :word_count, :visibility)
+    params.require(:story).permit(:text, :word_count, :visibility, :topic_id)
   end
 
 end

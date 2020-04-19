@@ -13,6 +13,8 @@
     label Content
     = f.text_area :text, class: "text-area"
 
+    = f.hidden_field :topic_id, value: @topic.id
+
   - if @story.id.present?
     = f.submit "Update Story", class:"btn btn-primary"
   - else
