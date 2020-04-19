@@ -1,11 +1,9 @@
 
 
-h2
-  = link_to "#{topic.title}", topic_path(@topic), class: "link_inherit_color"
+div
+  = link_to "#{topic.prompt}", topic, class: "link_inherit_color"
   p
     i
-      = topic.create_at.in_time_zone.strftime("%B %d, %Y, %l:%M%P")
-
-== topic.text
+      = topic.created_at.in_time_zone.strftime("%B %d, %Y, %l:%M%P")
 
 hr
