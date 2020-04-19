@@ -10,11 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_19_153356) do
+ActiveRecord::Schema.define(version: 2020_04_19_154217) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
   enable_extension "plpgsql"
+
+  create_table "stories", force: :cascade do |t|
+    t.integer "word_count", default: 0, null: false
+    t.text "text", default: "", null: false
+    t.integer "visibility", default: 0, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id"
+    t.bigint "topic_id"
+    t.index ["topic_id"], name: "index_stories_on_topic_id"
+    t.index ["user_id"], name: "index_stories_on_user_id"
+    t.index ["visibility"], name: "index_stories_on_visibility"
+  end
 
   create_table "topics", force: :cascade do |t|
     t.string "prompt", default: "", null: false
@@ -43,4 +56,6 @@ ActiveRecord::Schema.define(version: 2020_04_19_153356) do
     t.index ["name"], name: "index_users_on_name", unique: true
   end
 
+  add_foreign_key "stories", "topics"
+  add_foreign_key "stories", "users"
 end
