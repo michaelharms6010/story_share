@@ -34,6 +34,7 @@ class FriendshipsController < ApplicationController
   end
 
   def confirm
+    @friendship = Friendship.find(params[:id])
     pry
   end
 
