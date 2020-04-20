@@ -1,0 +1,9 @@
+div
+
+  = form_tag confirm_friendship_path(friendship), method: "post" do
+    .form-row
+      = friendship.friend.name_formatted
+      = submit_tag "Confirm", name: nil, class: "button button-search"
+      = submit_tag "Deny", name: nil, class: "button"
+
+hr

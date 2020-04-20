@@ -1,5 +1,5 @@
 class FriendshipsController < ApplicationController
-  before_action :logged_in_user,   only: [:show, :update, :create, :index, :search]
+  before_action :logged_in_user,   only: [:show, :update, :create, :index, :search, :confirm]
 
   def index
     @friends = current_user.friends
@@ -31,6 +31,10 @@ class FriendshipsController < ApplicationController
       end
       redirect_to friendships_path, search: params[:search]
     end
+  end
+
+  def confirm
+    pry
   end
 
   # def add_friend

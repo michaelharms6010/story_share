@@ -13,6 +13,10 @@ Rails.application.routes.draw do
   resources :topics,    only: [:new, :create, :destroy, :show, :edit, :update, :index]
   resources :stories,   only: [:new, :create, :destroy, :show, :edit, :update, :index]
 
-  resources :friendships, path: "friends",    only: [:show, :update, :create, :index]
+  resources :friendships, path: "friends",    only: [:show, :update, :create, :index] do
+    member do
+      post :confirm, to: 'friendships#confirm'
+    end
+  end
 
 end
