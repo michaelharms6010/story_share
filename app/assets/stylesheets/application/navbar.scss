@@ -14,6 +14,7 @@
 
   @include non-desktop {
     width: $navbar-mobile-width;
+    padding: 20px 0;
   }
 
 }
@@ -29,10 +30,6 @@
   }
 }
 
-.navbar-placeholder {
-  height: 43px;
-}
-
 .navbar-container {
   max-width: 1000px;
   margin: auto;
@@ -42,6 +39,9 @@
 .navbar-fa {
   margin: 0 10px;
   width: 20px;
+  // @include non-desktop {
+  //   margin: 20px;
+  // }
 }
 
 .navbar-cell {
@@ -57,5 +57,9 @@
     text-decoration: none;
     background-color:#eee;
     color: $color-link-hover;
+  }
+
+  @include non-desktop {
+    border-radius: 0;
   }
 }
