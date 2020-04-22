@@ -7,9 +7,10 @@ div
 
 - if @search_friend.present?
   div
-    = @search_friend.name
-  div
-    - if @friendship_request.present?
+    - if @friendship_request.present? && @friendship_request.inverse_friendship.confirmed
+      = render "friendship", friendship: @friendship_request
+    - elsif @friendship_request.present?
+      = @search_friend.name
       | Request sent
     - else
       = form_for(@friendship) do |f|

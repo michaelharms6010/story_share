@@ -5,13 +5,13 @@ class FriendshipsController < ApplicationController
     @friends = current_user.friends
     @user = current_user
 
-    @friendship_requests = Friendship.where(confirmed: false, friend_id: @user.id)
+    @friendship_requests = Friendship.where(confirmed: false, accepted: true, user_id: @user.id)
 
     if params[:search].present?
       @search_friend = User.find_by(name: params[:search].downcase)
       @search_friend = User.find_by(email: params[:search].downcase) if !@search_friend.present?
       if @search_friend.present?
-        @friendship_request = Friendship.where(user_id: @user.id, friend_id: @search_friend.id)
+        @friendship_request = Friendship.find_by(user_id: @user.id, friend_id: @search_friend.id)
         if !@friendship_request.present?
           @friendship = Friendship.new(user_id: @user.id, friend_id: @search_friend.id)
         end
