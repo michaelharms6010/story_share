@@ -8,12 +8,12 @@
 
 
   @include desktop {
-    width: 275px;
+    width: $navbar-desktop-width;
     padding: 20px;
   }
 
   @include non-desktop {
-    width: 50px;
+    width: $navbar-mobile-width;
   }
 
 }

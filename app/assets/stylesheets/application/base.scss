@@ -11,6 +11,9 @@ $color-error: #911;
 $color-link: #4285f4;
 $color-link-hover: #3369e8;
 
+$navbar-desktop-width: 275px;
+$navbar-mobile-width: 75px;
+
 
 @mixin phone { @media screen and (max-width: $phone-max) { @content; } }
 @mixin tablet { @media screen and (min-width: $tablet-min) and (max-width: $tablet-max) { @content; } }
@@ -118,6 +121,17 @@ iframe.embedded-youtube {
 }
 
 .container {
+  position: fixed;
+
+  @include desktop {
+    left: $navbar-desktop-width;
+    padding: 20px;
+  }
+
+  @include non-desktop {
+    left: $navbar-mobile-width;
+  }
+
   max-width: 1000px;
   padding: 10px;
   display: block;
