@@ -20,8 +20,9 @@ class FriendshipsController < ApplicationController
   end
 
   def create
-    @friendship = Friendship.new(friendship_params)
-    @friendship[:user_id] = current_user.id
+    friendship_data = friendship_params
+    friendship_data["user_id"] = current_user.id
+    @friendship = Friendship.find_by(friendship_data) || Friendship.new(friendship_data)
     if @friendship.save
       flash[:success] = "Request sent!"
       redirect_to friendships_path

@@ -10,10 +10,8 @@ class Friendship < ActiveRecord::Base
 
   def self.create_bidirectional_friendship(user, friend)
     return false if !user.present? || !friend.present?
-    profile_id = user.block_game_profile.id
-    friend_profile_id = friend.block_game_profile.id
-    if Friendship.create(user_id: user.id, friend_id: friend.id, block_game_profile_id: profile_id, friend_block_game_profile_id: friend_profile_id, confirmed: true)
-      Friendship.create(user_id: friend.id, friend_id: user.id, block_game_profile_id: friend_profile_id, friend_block_game_profile_id: profile_id, accepted: true)
+    if Friendship.create(user_id: user.id, friend_id: friend.id, confirmed: true)
+      Friendship.create(user_id: friend.id, friend_id: user.id, accepted: true)
     end
   end
 
