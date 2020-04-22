@@ -1,11 +1,21 @@
 .navbar
   .navbar-container
     = link_to root_path do
-      .navbar-cell.navbar-text Home
+      .navbar-cell.navbar-text
+        i.fa.fa-lg.fa-home
+        span.navbar-text-margin-left
+          | Home
     = link_to stories_path do
-      .navbar-cell.navbar-text Stories
+      .navbar-cell.navbar-text
+        i.fa.fa-lg.fa-book
+        span.navbar-text-margin-left
+          | Stories
     = link_to friendships_path do
-      .navbar-cell.navbar-text Friends
+      i.fa.fa-user-friends
+      .navbar-cell.navbar-text
+        i.fa.fa-lg.fa-users
+        span.navbar-text-margin-left
+          | Friends
     - if logged_in?
       = link_to logout_path, method: "delete" do
         .navbar-cell.navbar-text Log Out
