@@ -17,6 +17,13 @@
           | Friends
     - if logged_in?
       = link_to logout_path, method: "delete" do
-        .navbar-cell.navbar-text Log Out
+        .navbar-cell.navbar-text
+          i.navbar-fa.fa.fa-lg.fa-users
+          span.navbar-text-margin-left
+            | Log Out
     - else
-      = link_to "Log in", login_path, class:"navbar-cell"
+      = link_to login_path do
+        .navbar-cell.navbar-text
+          i.navbar-fa.fa.fa-lg.fa-user
+          span.navbar-text-margin-left
+            | Log In
