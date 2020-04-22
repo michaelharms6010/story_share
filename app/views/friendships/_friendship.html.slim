@@ -2,7 +2,7 @@ div
 
   = form_tag confirm_friendship_path(friendship), method: "post" do
     .form-row
-      = friendship.friend.name_formatted
+      = friendship.user.name_formatted
       = submit_tag "CONFIRM", class: "button button-search"
       = submit_tag "DENY", class: "button"
 

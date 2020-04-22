@@ -20,10 +20,8 @@ class FriendshipsController < ApplicationController
   end
 
   def create
-    friendship_data = friendship_params
-    friendship_data["user_id"] = current_user.id
-    @friendship = Friendship.find_by(friendship_data) || Friendship.new(friendship_data)
-    if @friendship.save
+    @friendship = Friendship.create_bidirectional_friendship(current_user.id, friendship_params["friend_id"])
+    if @friendship
       flash[:success] = "Request sent!"
       redirect_to friendships_path
     else
@@ -37,9 +35,9 @@ class FriendshipsController < ApplicationController
   def confirm
     @friendship = Friendship.find(params[:id])
     if params[:commit] == "CONFIRM"
-      confirm_friendship
+      @friendship.confirm_friendship
     elsif params[:commit] == "DENY"
-      deny_friendship
+      @friendship.deny_friendship
     end
   end
 

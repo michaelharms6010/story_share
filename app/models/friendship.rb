@@ -6,12 +6,13 @@ class Friendship < ActiveRecord::Base
   validates_uniqueness_of :user_id, :scope => :friend_id
   validate :not_friends_with_self
 
+  after_create :create_inverse_friendship
+
   before_save :set_confirmation
 
-  def self.create_bidirectional_friendship(user, friend)
-    return false if !user.present? || !friend.present?
-    if Friendship.create(user_id: user.id, friend_id: friend.id, confirmed: true)
-      Friendship.create(user_id: friend.id, friend_id: user.id, accepted: true)
+  def self.create_bidirectional_friendship(user_id, friend_id)
+    if Friendship.create(user_id: user_id, friend_id: friend_id, confirmed: true)
+      Friendship.create(user_id: friend_id, friend_id: user_id, accepted: true)
     end
   end
 
