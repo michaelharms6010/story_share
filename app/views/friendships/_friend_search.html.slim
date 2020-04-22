@@ -19,6 +19,7 @@ div
         | Request sent
 
     - else
+      = @search_friend.name_formatted
       = form_for(@friendship) do |f|
         = f.hidden_field :friend_id, value: @search_friend.id, class:"btn btn-primary"
         = f.submit "Add Friend", class:"btn btn-primary"
