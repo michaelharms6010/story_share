@@ -16,11 +16,10 @@
 
   input.text-field {
     font-size: 14px;
-    height: 40px;
+    height: 36px;
     display: block;
     width: 100%;
     padding: 10px;
-    border-image: asset-url('text_field.png') 8 8 8 8 fill repeat;
     // border-width: 8px;
     border-image-width: 8px;
     background-color: transparent;
@@ -28,7 +27,21 @@
     border-radius: 0;
     font-family: $font-family-sans-serif;
   }
+
+  input.text-field-search {
+    max-width:300px;
+    display:inline-block;
+  }
 }
+
+.search-icon-button {
+  vertical-align: top;
+  display: inline-block;
+  height: 36px;
+  width: 36px;
+}
+
+
 
 #error_explanation {
   color: $color-error;
