@@ -14,6 +14,10 @@ class Friendship < ActiveRecord::Base
     end
   end
 
+  def friends?
+    self.confirmed && self.accepted && self.inverse_friendship.confirmed && self.inverse_friendship.accepted
+  end
+
   def inverse_friendship
     Friendship.find_by(user_id: self.friend_id, friend_id: self.user_id)
   end

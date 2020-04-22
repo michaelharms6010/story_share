@@ -8,10 +8,16 @@ div
 - if @search_friend.present?
   div
     - if @friendship_request.present? && @friendship_request.inverse_friendship.confirmed
-      = render "friendship", friendship: @friendship_request
-    - elsif @friendship_request.present?
-      = @search_friend.name
-      | Request sent
+
+
+      - if @friendship_request.friends?
+        = "You are already friends with #{@friendship_request.friend.name_formatted}"
+      - elsif @friendship_request.inverse_friendship.confirmed
+        = render "friendship", friendship: @friendship_request
+      - elsif @friendship_request.present?
+        = @search_friend.name_formatted
+        | Request sent
+
     - else
       = form_for(@friendship) do |f|
         = f.hidden_field :friend_id, value: @search_friend.id, class:"btn btn-primary"

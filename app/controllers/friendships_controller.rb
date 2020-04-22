@@ -35,9 +35,11 @@ class FriendshipsController < ApplicationController
   def confirm
     @friendship = Friendship.find(params[:id])
     if params[:commit] == "CONFIRM"
-      @friendship.confirm_friendship
+      flash[:success] = "You are now friends!"
+      @friendship.accept_friendship
     elsif params[:commit] == "DENY"
-      @friendship.deny_friendship
+      flash[:success] = "Friendship request denied"
+      @friendship.reject_friendship
     end
   end
 
