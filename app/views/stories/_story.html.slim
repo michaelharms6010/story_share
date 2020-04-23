@@ -1,11 +1,12 @@
 
 
+div
+  = link_to story.user.name_formatted, "/users/#{story.user.name}"
+  i
+    = " - "
+    = story.created_at.in_time_zone.strftime("%B %d, %Y, %l:%M%P")
 h2
   = link_to "#{story.topic.prompt}", story, class: "link_inherit_color"
-  p
-    i
-      = story.created_at.in_time_zone.strftime("%B %d, %Y, %l:%M%P")
-
 == story.html_text
 
 hr
