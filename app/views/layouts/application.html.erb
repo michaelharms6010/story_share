@@ -11,12 +11,12 @@
   </head>
   <%= render "layouts/navbar" %>
   <body>
-    <% flash.each do |message_type, message| %>
-      <% unless message_type == "custom_error" %>
-        <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
-      <% end %>
-    <% end %>
     <div class="container">
+      <% flash.each do |message_type, message| %>
+        <% unless message_type == "custom_error" %>
+          <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
+        <% end %>
+      <% end %>
       <%= yield %>
     </div>
   </body>
