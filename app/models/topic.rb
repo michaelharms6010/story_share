@@ -10,6 +10,20 @@ class Topic < ActiveRecord::Base
     ["MICRO", "SHORT", "MEDIUM", "LONG"]
   end
 
+  def write_time
+    if self.length == "MICRO"
+      1.minute
+    elsif self.length == "SHORT"
+      3.minutes
+    elsif self.length == "MEDIUM"
+      5.minutes
+    elsif self.length == "LONG"
+      7.minutes
+    else
+      5.minutes
+    end
+  end
+
   private
 
 end

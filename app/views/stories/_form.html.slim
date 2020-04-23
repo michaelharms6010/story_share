@@ -12,8 +12,19 @@
       = @topic.prompt
 
   .form-row
-    = f.text_area :text, class: "text-area story-input"
+    div class="story-timer js-story-timer" data-time=@topic.write_time
+      = @topic.write_time
 
+
+  .form-row
+    .story-input-container
+      .story-input-overlay
+        div
+          = "#{distance_of_time_in_words(@topic.write_time)}"
+        br
+        .button
+          | Click to Start
+      = f.text_area :text, class: "text-area story-input", disabled: true
     = f.hidden_field :topic_id, value: @topic.id
 
   - if @story.id.present?
