@@ -6,6 +6,23 @@
   left: 0;
   z-index: 1000;
 
+  @include desktop {
+    width: calc(50% - 400px);
+    min-width: $navbar-desktop-width;
+  }
+
+  @include non-desktop {
+    width: calc(50% - 400px);
+    min-width: $navbar-mobile-width;
+  }
+
+}
+
+.navbar-container {
+  margin: auto;
+  display: block;
+  position: absolute;
+  right: 0;
 
   @include desktop {
     width: $navbar-desktop-width;
@@ -17,11 +34,6 @@
     padding: 20px 0;
   }
 
-}
-
-.navbar-container {
-  margin: auto;
-  display: block;
 }
 
 .navbar-text {

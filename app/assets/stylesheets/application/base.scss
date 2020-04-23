@@ -1,18 +1,19 @@
 $font-family: "Helvetica Neue", "Helvetica", Arial, sans-serif;
 $font-family-serif: "Times New Roman", serif;
 
-$phone-max: 767px;
-$tablet-min: $phone-max + 1;
-$tablet-max: 991px;
-$desktop-min: $tablet-max + 1;
-
 $color-error: #911;
 
 $color-link: #4285f4;
 $color-link-hover: #3369e8;
 
+$container-max-width: 800px;
 $navbar-desktop-width: 200px;
 $navbar-mobile-width: 75px;
+
+$phone-max: $container-max-width + $navbar-mobile-width * 2;
+$tablet-min: $phone-max + 1;
+$tablet-max: 1200px;
+$desktop-min: $tablet-max + 1;
 
 
 @mixin phone { @media screen and (max-width: $phone-max) { @content; } }
@@ -121,24 +122,32 @@ iframe.embedded-youtube {
 }
 
 .container {
-  position: fixed;
+  position: initial;
+  margin: auto;
+  max-width: $container-max-width;
+  padding: 30px;
+  display: block;
+  margin: auto;
 
   @include desktop {
     left: $navbar-desktop-width;
-    padding: 30px;
     width: calc(100% - $navbar-desktop-width);
   }
 
   @include non-desktop {
-    left: $navbar-mobile-width;
-    padding: 15px;
-    width: calc(100% - $navbar-mobile-width);
+    position: fixed;
+    width: calc(100% - 150px);
   }
 
-  max-width: 800px;
-  padding: 20px;
-  display: block;
-  margin: auto;
+  @include tablet {
+    left: calc(50% - 400px);
+  }
+
+  @include phone {
+    left: $navbar-mobile-width;
+    width: calc(100% - 75px);
+  }
+
 }
 
 .two-col {
