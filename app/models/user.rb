@@ -38,6 +38,11 @@ class User < ApplicationRecord
     !!VALID_EMAIL_REGEX.match(test_string)
   end
 
+  def story_available
+
+    self.stories_today.length == 0 && self.next_topic.present?
+  end
+
   def stories_today
     self.stories.where(created_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day)
   end
