@@ -8,9 +8,6 @@ Rails.application.routes.draw do
   get    '/invite',   to: 'users#invite'
 
   resources :users, only: [:new, :create, :update, :show]
-  get    '/profile',   to: 'users#show'
-  get    '/profile/edit',   to: 'users#edit'
-
 
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]

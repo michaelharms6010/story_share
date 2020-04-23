@@ -16,7 +16,7 @@
         span.navbar-text-margin-left
           | Friends
     - if logged_in?
-      = link_to "/profile" do
+      = link_to "/users/#{current_user.name_formatted}" do
         .navbar-cell.navbar-text
           i.navbar-fa.fa.fa-lg.fa-user
           span.navbar-text-margin-left
