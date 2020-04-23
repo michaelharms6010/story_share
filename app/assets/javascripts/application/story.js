@@ -12,8 +12,10 @@ $(document).ready(function() {
     console.log( seconds_remaining );
 
     function update_timer_display() {
-      $timer.text(Math.floor(seconds_remaining / 60) + ":" + (seconds_remaining % 60))
+      let padded_seconds = ("00" + (seconds_remaining % 60)).slice(-2);
+      $timer.text(Math.floor(seconds_remaining / 60) + ":" + padded_seconds);
     }
+    update_timer_display();
 
     function tick_timer() {
       seconds_remaining -= 1;
