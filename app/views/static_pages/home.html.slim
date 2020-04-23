@@ -1,9 +1,7 @@
 h1 Home
 
 hr
-- if !current_user.present?
-  = render "sessions/form"
-- elsif current_user.story_available
+- if current_user.story_available
   h3
     | You have a new story prompt!
   br
@@ -12,3 +10,8 @@ hr
 - else
   h3
     | You have written your story for today. Come back tomorrow for a new prompt!
+
+hr
+
+- @stories.each do |story|
+  = render "stories/story", story: story

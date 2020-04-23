@@ -39,12 +39,15 @@ class User < ApplicationRecord
   end
 
   def story_available
-
     self.stories_today.length == 0 && self.next_topic.present?
   end
 
   def stories_today
     self.stories.where(created_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day)
+  end
+
+  def all_stories
+    Story.where(user_id: self.friendships.select(:friend_id)).or(Story.where(user_id: self.id)).order("updated_at DESC")
   end
 
   # Get the next topic
