@@ -1,11 +1,15 @@
 class UsersController < ApplicationController
 
-  before_action :logged_in_user, only: [:index, :edit, :update, :destroy, :show]
+  before_action :logged_in_user, only: [:index, :edit, :update, :destroy, :show, :invite]
   before_action :correct_user,   only: [:update]
   before_action :is_friend,      only: [:show]
   before_action :admin_user,     only: :destroy
 
   def new
+    @user = User.new
+  end
+
+  def invite
     @user = User.new
   end
 
@@ -67,6 +71,7 @@ class UsersController < ApplicationController
     end
 
     def is_friend
+      # TODO: IMPLEMENT THIS
       redirect_to(root_url) unless current_user?(@user)
     end
 
