@@ -39,8 +39,6 @@ class UsersController < ApplicationController
   end
 
   def show
-    pry
-    @user = User.find_by(name: params[:id])
   end
 
   def destroy
@@ -56,23 +54,18 @@ class UsersController < ApplicationController
                                    :password_confirmation)
     end
 
-    # Confirms a logged-in user.
-    def logged_in_user
-      unless logged_in?
-        store_location
-        flash[:danger] = "Please log in."
-        redirect_to login_url
-      end
-    end
-
     # Confirms the correct user.
     def correct_user
       redirect_to(root_url) unless current_user?(@user)
     end
 
     def is_friend
-      # TODO: IMPLEMENT THIS
-      redirect_to(root_url) unless current_user?(@user)
+      @user = User.find_by(name: params[:id])
+      friendship = Friendship.find_by(user_id: current_user.id, friend_id: @user.id, accepted: true)
+      if @user != current_user && !friendship.present?
+        flash[:danger] = "Must be friends to view profile."
+        redirect_to(root_url)
+      end
     end
 
 
