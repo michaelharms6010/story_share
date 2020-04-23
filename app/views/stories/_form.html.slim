@@ -13,8 +13,7 @@
 
   .form-row
     div class="story-timer js-story-timer" data-story-time=@topic.write_time
-      = @topic.write_time
-
+      = "#{(@topic.write_time / 60).to_i}:00"
 
   .form-row
     .story-input-container

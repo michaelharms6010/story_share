@@ -11,18 +11,36 @@ $(document).ready(function() {
     var seconds_remaining = $timer.attr('data-story-time')
     console.log( seconds_remaining );
 
-    function startTimer() {
+    function update_timer_display() {
+      $timer.text(Math.floor(seconds_remaining / 60) + ":" + (seconds_remaining % 60))
+    }
+
+    function tick_timer() {
+      seconds_remaining -= 1;
+      update_timer_display();
+      console.log(seconds_remaining);
+      if (seconds_remaining > 0) {
+        setTimeout(tick_timer, 1000);
+      } else {
+        end_timer();
+      }
+    }
+
+    function start_timer() {
+      tick_timer();
+    }
+
+    function end_timer() {
+      $(".story-input").attr("disabled", true);
+      $(".story-input").focus();
     }
 
     $timer_start_button.click(function() {
-      console.log("START TIMER");
       $story_input_overlay.hide();
       $(".story-input").attr("disabled", false);
       $(".story-input").focus();
+      start_timer();
     });
-
-
-
 
   }
 
