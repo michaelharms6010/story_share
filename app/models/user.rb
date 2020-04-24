@@ -40,11 +40,19 @@ class User < ApplicationRecord
 
   def self.time_zones_for_select
     time_zones = [["American Samoa", "SST"], ["Hawaii", "HST"], ["Alaska", "AKST"], ["Pacific Time (US & Canada)", "PST"], ["Mountain Time (US & Canada)", "MST"], ["Central Time (US & Canada)", "CST"], ["Eastern Time (US & Canada)", "EST"], ["Atlantic Time (Canada)", "AST"], ["Newfoundland", "NST"], ["Buenos Aires", "ART"], ["Mid-Atlantic", "GST"], ["Azores", "AZOT"], ["London", "GMT"], ["Berlin", "CET"], ["Athens", "EET"], ["Moscow", "MSK"], ["Tehran", "IRDT"], ["Samara", "SAMT"], ["Kabul", "AFT"], ["Islamabad", "PKT"], ["Mumbai", "IST"], ["Kathmandu", "NPT"], ["Dhaka", "BST"], ["Bangkok", "ICT"], ["Beijing", "CST"], ["Tokyo", "JST"], ["Adelaide", "ACST"], ["Sydney", "AET"], ["New Caledonia", "NCT"], ["Fiji", "FJT"], ["Chatham Is.", "CHAST"], ["Samoa", "WST"]]
-    select_options = []
+    select_options = {}
     time_zones.each do |zone|
-      select_options.append([zone, Time.now.in_time_zone(zone[0]).strftime("%l:%M%P (#{zone[1]})")])
+      select_options[Time.now.in_time_zone(zone[0]).strftime("#{zone[1]}: #{zone[0]} - %l:%M %P")] = zone[0]
     end
     select_options
+  end
+
+  def display_name
+    if self.show_full_name && self.first_name.present? && self.last_name.present?
+      "#{self.first_name} #{self.last_name}"
+    else
+      self.name_formatted
+    end
   end
 
   def story_available

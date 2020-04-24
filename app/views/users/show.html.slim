@@ -1,6 +1,9 @@
 h1
-  = @user.name_formatted
+  = @user.display_name
 
+br
+div
+  = link_to "Edit Profile", "/users/#{@user.name}/edit", class: "button"
 hr
 
 h3

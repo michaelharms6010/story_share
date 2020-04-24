@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   delete '/logout',  to: 'sessions#destroy'
   get    '/invite',   to: 'users#invite'
 
-  resources :users, only: [:new, :create, :update, :show]
+  resources :users, only: [:new, :create, :update, :show, :edit]
 
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]

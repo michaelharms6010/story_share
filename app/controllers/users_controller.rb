@@ -32,7 +32,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     if @user.update(user_params)
       flash[:success] = "Profile updated"
-      redirect_to @user
+      redirect_to "/users/#{@user.name}"
     else
       render 'edit'
     end
@@ -51,12 +51,14 @@ class UsersController < ApplicationController
 
     def user_params
       params.require(:user).permit(:name, :email, :password,
-                                   :password_confirmation)
+                                   :password_confirmation,
+                                   :first_name, :last_name,
+                                   :show_full_name)
     end
 
     # Confirms the correct user.
     def correct_user
-      redirect_to(root_url) unless current_user?(@user)
+      redirect_to(root_url) unless current_user?(User.find(params[:id]))
     end
 
     def is_friend
