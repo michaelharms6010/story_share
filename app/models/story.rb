@@ -8,6 +8,7 @@ class Story < ActiveRecord::Base
 
   def html_text
     self.text.gsub("\n", "</br>")
+    "<p>" + self.text.split("\n").join("</p><p>") + "</p>"
   end
 
 end
