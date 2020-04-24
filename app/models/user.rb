@@ -43,7 +43,7 @@ class User < ApplicationRecord
   end
 
   def stories_today
-    self.stories.where(created_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day)
+    self.stories.where(created_at: Time.now.beginning_of_day..Time.now.end_of_day)
   end
 
   def all_stories
