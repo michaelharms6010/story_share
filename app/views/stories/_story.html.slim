@@ -2,14 +2,15 @@
 
 .story-feed-heading
   = link_to "#{story.topic.prompt}", story, class: "link_inherit_color"
+span.story-feed-portrait
+.story-feed-byline
+  = link_to story.user.name_formatted, "/users/#{story.user.name}", class: "link_inherit_color"
+  .story-feed-publish-date
+    = story.created_at.in_time_zone.strftime("%B %d, %Y, %l:%M%P")
+
+
 
 .story-feed-text
   == story.html_text
-
-.story-feed-byline
-  = link_to story.user.name_formatted, "/users/#{story.user.name}", class: "link_inherit_color"
-  i
-    = " - "
-    = story.created_at.in_time_zone.strftime("%B %d, %Y, %l:%M%P")
 
 hr

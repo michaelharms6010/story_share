@@ -42,7 +42,7 @@
 }
 
 .story-feed-heading {
-  font-size: 2rem;
+  font-size: 2.5rem;
   font-style: italic;
   margin: 20px 0;
 }
@@ -50,9 +50,25 @@
 .story-feed-text {
   font-family: $font-family-serif;
   font-size: 2rem;
-  margin: 10px;
+  margin: 30px 10px;
+}
+
+.story-feed-portrait {
+  height: 5rem;
+  width: 5rem;
+  background-color: grey;
+  display: inline-block;
+  border-radius: 50%;
 }
 
 .story-feed-byline {
-  margin-top: 30px;
+  height: 5rem;
+  font-size: 1.5rem;
+  margin: 0.5rem 1.5rem;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.story-feed-publish-date {
+  font-style: italic;
 }
