@@ -1,5 +1,8 @@
 .navbar
   .navbar-container
+    - if current_user.present?
+      = current_user.name_formatted
+    hr
     = link_to root_path do
       .navbar-cell.navbar-text
         i.navbar-fa.fa.fa-lg.fa-home
