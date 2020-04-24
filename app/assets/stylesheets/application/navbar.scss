@@ -24,6 +24,8 @@
   display: block;
   position: absolute;
   right: 0;
+  overflow-y: scroll;
+  max-height: 100%;
 
   @include desktop {
     width: $navbar-desktop-width;
