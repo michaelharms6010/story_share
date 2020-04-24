@@ -24,8 +24,14 @@
   // background-color: #FFFEF2;
   background-color: white;
   border: 1px;
-  -webkit-box-shadow: 5px 5px 15px 5px rgba(0,0,0,0.1);
-  box-shadow: 5px 5px 15px 5px rgba(0,0,0,0.1);
+  resize: none;
+  overflow-y: auto;
+  height: auto;
+  // -webkit-box-shadow: 5px 5px 15px 5px rgba(0,0,0,0.1);
+  // box-shadow: 5px 5px 15px 5px rgba(0,0,0,0.1);
+  &:focus {
+    outline: none;
+  }
 }
 
 
