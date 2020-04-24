@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_19_190310) do
+ActiveRecord::Schema.define(version: 2020_04_24_144435) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -65,7 +65,13 @@ ActiveRecord::Schema.define(version: 2020_04_19_190310) do
     t.boolean "admin"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "first_name", default: "", null: false
+    t.string "last_name", default: "", null: false
+    t.string "time_zone", default: "Pacific Time (US & Canada)", null: false
+    t.boolean "show_full_name", default: false, null: false
+    t.integer "invited_by"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["invited_by"], name: "index_users_on_invited_by"
     t.index ["name"], name: "index_users_on_name", unique: true
   end
 
