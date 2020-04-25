@@ -59,8 +59,16 @@ class User < ApplicationRecord
     self.stories_today.length == 0 && self.next_topic.present?
   end
 
+  def time_to_next_story
+    if self.story_available
+      0
+    else
+      Time.now.in_time_zone(self.time_zone).end_of_day - Time.now.in_time_zone(self.time_zone)
+    end
+  end
+
   def stories_today
-    self.stories.where(created_at: Time.now.beginning_of_day..Time.now.end_of_day)
+    self.stories.where(created_at: Time.now.in_time_zone(self.time_zone).beginning_of_day..Time.now.in_time_zone(self.time_zone).end_of_day)
   end
 
   def all_stories
@@ -69,7 +77,9 @@ class User < ApplicationRecord
 
   # Get the next topic
   def next_topic
-    Topic.where.not(id: self.stories.select(:topic_id)).first
+    if self.story_available
+      Topic.where.not(id: self.stories.select(:topic_id)).first
+    end
   end
 
   # Remembers a user in the database for use in persistent sessions.

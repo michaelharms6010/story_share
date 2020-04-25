@@ -53,7 +53,8 @@ class UsersController < ApplicationController
       params.require(:user).permit(:name, :email, :password,
                                    :password_confirmation,
                                    :first_name, :last_name,
-                                   :show_full_name)
+                                   :show_full_name,
+                                   :time_zone)
     end
 
     # Confirms the correct user.
