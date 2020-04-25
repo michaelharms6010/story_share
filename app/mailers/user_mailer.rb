@@ -10,6 +10,13 @@ class UserMailer < ApplicationMailer
     mail to: user.email, subject: "Account activation"
   end
 
+  def account_invite(user, inviter, message)
+    @user = user
+    @inviter = inviter
+    @message = message
+    mail to: user.email, subject: "#{inviter.name} invites you to share stories!"
+  end
+
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
   #

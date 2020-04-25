@@ -32,19 +32,12 @@ class UsersController < ApplicationController
     @user = User.new(name: random_name, password: random_password, password_confirmation: random_password,
                     email: @invite[:email], first_name: @invite[:first_name], last_name: @invite[:last_name])
     if @user.save
+      @user.send_invite_email(current_user, params[:message])
       flash[:info] = "Invite sent!"
       redirect_to root_url
     else
       render 'invite'
     end
-
-    # if @user.save
-    #   @user.send_activation_email
-    #   flash[:info] = "Please check your email to activate your account."
-    #   redirect_to root_url
-    # else
-    #   render 'new'
-    # end
   end
 
   def edit

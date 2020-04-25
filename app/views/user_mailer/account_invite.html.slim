@@ -1,0 +1,9 @@
+- if @message.present?
+  = @message
+- else
+  = "Hey there\n\n#{@inviter.name} invites you to share stories on Story Friends!"
+
+= "\n\n"
+
+
+= link_to "Activate", edit_account_activation_url(@user.activation_token, email: @user.email)

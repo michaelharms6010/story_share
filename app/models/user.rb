@@ -111,6 +111,11 @@ class User < ApplicationRecord
     UserMailer.account_activation(self).deliver_now
   end
 
+  # Sends invite email.
+  def send_invite_email(inviter, message)
+    UserMailer.account_invite(self, inviter, message).deliver_now
+  end
+
   # Sets the password reset attributes.
   def create_reset_digest
     self.reset_token = User.new_token
