@@ -30,8 +30,8 @@ $(document).ready(function() {
     start_timer();
 
     function end_timer() {
-      $(".story-input").attr("disabled", true);
-      $(".story-input").focus();
+      // TODO: AJAX NEW BUTTON
+      location.reload();
     }
 
   }
