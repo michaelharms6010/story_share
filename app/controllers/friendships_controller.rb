@@ -41,6 +41,7 @@ class FriendshipsController < ApplicationController
       flash[:success] = "Friendship request denied"
       @friendship.reject_friendship
     end
+    redirect_to friendships_path
   end
 
   # def add_friend
