@@ -42,6 +42,10 @@ module SessionsHelper
       flash[:danger] = "Please log in."
       redirect_to login_url
     end
+    unless activated?
+      flash[:warning] = message
+      redirect_to root_url
+    end
   end
 
   # Returns the user corresponding to the remember token cookie.
