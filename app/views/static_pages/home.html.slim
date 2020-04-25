@@ -8,21 +8,12 @@ hr
   br
   div
     = link_to "START WRITING", new_story_path, class: "button"
+
+  hr
+
 - else
-  h3
-    | You have written your story for today.
+  = render "stories/prompt_timer"
 
-  h3
-    ' Check back for a new prompt in:
-
-    - time_to_prompt = current_user.time_to_next_story
-    span class="js-homepage-timer" data-prompt-time=time_to_prompt
-      = "#{(time_to_prompt / 3600).to_i}"
-      = ":"
-      = "#{(time_to_prompt / 60).to_i % 60}".rjust(2, '0')
-      = ":"
-      = "#{(time_to_prompt % 60).to_i}".rjust(2, '0')
-hr
 
 - @stories.each do |story|
   = render "stories/story", story: story
