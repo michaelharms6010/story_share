@@ -2,7 +2,7 @@ h1 Home
 
 hr
 
-- if !@user.present?
+- if !@user.present? || !@user.activated
   | Welcome to Story Friends! Log in or create an account to start sharing stories with your friends.
 
 - else
