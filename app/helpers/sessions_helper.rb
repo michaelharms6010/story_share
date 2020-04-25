@@ -66,8 +66,8 @@ module SessionsHelper
     !current_user.nil?
   end
 
-  def logged_in?
-    current_user.present? && current_user.activated?
+  def activated?
+    current_user.present? && current_user.activated
   end
 
   # Redirects to stored location (or to the default).
