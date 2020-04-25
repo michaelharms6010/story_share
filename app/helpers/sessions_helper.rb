@@ -37,12 +37,11 @@ module SessionsHelper
   end
 
   def logged_in_user
-    unless logged_in?
+    if !logged_in?
       store_location
       flash[:danger] = "Please log in."
       redirect_to login_url
-    end
-    unless activated?
+    elsif !activated?
       flash[:warning] = "Please check your email to activate your account."
       redirect_to root_url
     end
