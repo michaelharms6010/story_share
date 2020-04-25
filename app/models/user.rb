@@ -77,9 +77,7 @@ class User < ApplicationRecord
 
   # Get the next topic
   def next_topic
-    if self.story_available
-      Topic.where.not(id: self.stories.select(:topic_id)).first
-    end
+    Topic.where.not(id: self.stories.select(:topic_id)).first
   end
 
   # Remembers a user in the database for use in persistent sessions.
