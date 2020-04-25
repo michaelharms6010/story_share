@@ -10,6 +10,7 @@ class UsersController < ApplicationController
   end
 
   def invite
+    @invite = {first_name: "", last_name: "", email: "", message: ""}
     @user = User.new
   end
 
@@ -25,13 +26,25 @@ class UsersController < ApplicationController
   end
 
   def create_invite
+    @invite = {first_name: params[:first_name], last_name: params[:last_name], email: params[:email], message: params[:message]}
+    random_name = (0...12).map { (65 + rand(26)).chr }.join
+    random_password = SecureRandom.urlsafe_base64
+    @user = User.new(name: random_name, password: random_password, password_confirmation: random_password,
+                    email: @invite[:email], first_name: @invite[:first_name], last_name: @invite[:last_name])
     if @user.save
-      @user.send_activation_email
-      flash[:info] = "Please check your email to activate your account."
+      flash[:info] = "Invite sent!"
       redirect_to root_url
     else
-      render 'new'
+      render 'invite'
     end
+
+    # if @user.save
+    #   @user.send_activation_email
+    #   flash[:info] = "Please check your email to activate your account."
+    #   redirect_to root_url
+    # else
+    #   render 'new'
+    # end
   end
 
   def edit
