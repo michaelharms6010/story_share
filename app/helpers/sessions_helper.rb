@@ -43,7 +43,7 @@ module SessionsHelper
       redirect_to login_url
     end
     unless activated?
-      flash[:warning] = message
+      flash[:warning] = "Please check your email to activate your account."
       redirect_to root_url
     end
   end
