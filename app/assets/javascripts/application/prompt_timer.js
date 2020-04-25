@@ -1,14 +1,16 @@
 $(document).ready(function() {
 
-  if ($(".js-home-timer").length > 0) {
+  if ($(".js-prompt-timer").length > 0) {
 
     // On story page
-    var $timer = $(".js-home-timer");
-    var seconds_remaining = $timer.attr('data-prompt-time')
+    var $timer = $(".js-prompt-timer");
+    var seconds_remaining = Math.floor($timer.attr('data-prompt-time'))
 
     function update_timer_display() {
       let padded_seconds = ("00" + (seconds_remaining % 60)).slice(-2);
-      $timer.text(Math.floor(seconds_remaining / 60) + ":" + padded_seconds);
+      let padded_minutes = ("00" + (Math.floor(seconds_remaining / 60) % 60)).slice(-2);
+      let hours = Math.floor(seconds_remaining / 3600);
+      $timer.text(hours + "h " + padded_minutes + "m " + padded_seconds + "s");
     }
     update_timer_display();
 
@@ -25,6 +27,7 @@ $(document).ready(function() {
     function start_timer() {
       tick_timer();
     }
+    start_timer();
 
     function end_timer() {
       $(".story-input").attr("disabled", true);
