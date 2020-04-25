@@ -1,8 +1,7 @@
-= current_user.name
-
 h1
-  | Friends
+  ' Friends
 
+  = link_to "Invite", invite_url, class: "button"
 
 = render "friend_search"
 

@@ -1,0 +1,31 @@
+.form-container
+
+  h1 Invite Friend
+
+  = form_tag create_invite_path, method: "post" do
+
+    .form-row
+      .two-col
+        strong First name
+        div
+          = text_field_tag :first_name, @user.first_name, class: "form-control", placeholder: "John"
+
+      .two-col
+        strong Last name (optional)
+        div
+          = text_field_tag :last_name, @user.last_name, class: "form-control", placeholder: "Doe"
+
+    .form-row
+      strong Email
+      div
+        = email_field_tag :email, @user.email, class: "form-control", placeholder: "friend@email.com"
+
+    .form-row
+      strong Message
+      div
+      = text_area_tag :message, "", class: "form-control text-area", placeholder: "Check out Story Friends!"
+
+
+    hr
+    button type="submit" class="button"
+      | SEND INVITE
