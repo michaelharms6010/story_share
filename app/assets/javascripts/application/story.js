@@ -8,6 +8,7 @@ $(document).ready(function() {
     var $story_input_overlay = $(".story-input-overlay");
     var $story_input = $(".story-input");
     var seconds_remaining = $timer.attr('data-story-time')
+    seconds_remaining = 5;
     console.log( seconds_remaining );
 
     var $post_story_button = $(".js-story-post-button");
@@ -35,15 +36,26 @@ $(document).ready(function() {
     }
 
     function end_timer() {
-      $(".story-input").attr("disabled", true);
-      $(".story-input").focus();
+      $story_input.attr("disabled", true);
+      $story_input.focus();
+      $edit_story_button.removeClass("hidden");
     }
 
     $timer_start_button.click(function() {
       $story_input_overlay.hide();
-      $(".story-input").attr("disabled", false);
-      $(".story-input").focus();
+      $story_input.attr("disabled", false);
+      $story_input.focus();
       start_timer();
+    });
+
+    $edit_story_button.click(function() {
+      if (confirm("Add 2 minutes?")) {
+        seconds_remaining = 120;
+        $story_input.attr("disabled", false);
+        $story_input.focus();
+        $edit_story_button.addClass("hidden");
+        start_timer();
+      }
     });
 
     $post_story_button.click(function() {
