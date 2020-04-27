@@ -1,10 +1,22 @@
 h1
   = @user.display_name
 
-br
+- if @user.show_full_name
 div
-  = link_to "Edit Profile", "/users/#{@user.name}/edit", class: "button"
+  em
+    = @user.display_name
+
+- if current_user?(@user)
+  br
+  div
+    = link_to "Edit Profile", "/users/#{@user.name}/edit", class: "button"
+- elsif !current_user.friends?(@user)
+  br
+  = form_for(@friendship) do |f|
+    = f.hidden_field :friend_id, value: @search_friend.id, class:"btn btn-primary"
+    = f.submit "Add Friend", class:"btn btn-primary"
+
+
 hr
 
-h3
-  | TODO: SHOW STORIES
+= render @user.stories
