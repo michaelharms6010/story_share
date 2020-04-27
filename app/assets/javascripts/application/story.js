@@ -8,7 +8,6 @@ $(document).ready(function() {
     var $story_input_overlay = $(".story-input-overlay");
     var $story_input = $(".story-input");
     var seconds_remaining = $timer.attr('data-story-time')
-    seconds_remaining = 5;
     console.log( seconds_remaining );
 
     var $post_story_button = $(".js-story-post-button");
@@ -56,6 +55,12 @@ $(document).ready(function() {
         $edit_story_button.addClass("hidden");
         start_timer();
       }
+    });
+
+    $story_input.keypress(function() {
+      console.log($story_input.val());
+      // $post_story_button.removeClass("button-disabled")
+      // $post_story_button.removeClass("button-disabled")
     });
 
     $post_story_button.click(function() {
