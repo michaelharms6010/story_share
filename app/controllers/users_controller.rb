@@ -30,7 +30,8 @@ class UsersController < ApplicationController
     random_name = (0...12).map { (65 + rand(26)).chr }.join
     random_password = SecureRandom.urlsafe_base64
     @user = User.new(name: random_name, password: random_password, password_confirmation: random_password,
-                    email: @invite[:email], first_name: @invite[:first_name], last_name: @invite[:last_name])
+                    email: @invite[:email], first_name: @invite[:first_name], last_name: @invite[:last_name],
+                    is_guest: true)
     if @user.save
       @user.send_invite_email(current_user, params[:message])
       flash[:info] = "Invite sent!"
