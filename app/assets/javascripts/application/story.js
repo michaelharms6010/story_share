@@ -46,6 +46,13 @@ $(document).ready(function() {
       start_timer();
     });
 
+    $post_story_button.click(function() {
+      if (seconds_remaining > 0 && !confirm("Submit early?")) {
+        return false;
+      }
+    });
+
+
   }
 
 
