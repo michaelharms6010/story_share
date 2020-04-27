@@ -8,7 +8,6 @@ $(document).ready(function() {
     var $story_input_overlay = $(".story-input-overlay");
     var $story_input = $(".story-input");
     var seconds_remaining = $timer.attr('data-story-time')
-    console.log( seconds_remaining );
 
     var $post_story_button = $(".js-story-post-button");
     var $edit_story_button = $(".js-story-edit-button");
@@ -48,7 +47,7 @@ $(document).ready(function() {
     });
 
     $edit_story_button.click(function() {
-      if (confirm("Add 2 minutes?")) {
+      if (confirm("Add 2 minutes to edit?")) {
         seconds_remaining = 120;
         $story_input.attr("disabled", false);
         $story_input.focus();
@@ -57,14 +56,20 @@ $(document).ready(function() {
       }
     });
 
-    $story_input.keypress(function() {
-      console.log($story_input.val());
-      // $post_story_button.removeClass("button-disabled")
-      // $post_story_button.removeClass("button-disabled")
+    $story_input.on("keydown input", function() {
+      text = $story_input.val()
+      if (text.length > 0) {
+        $post_story_button.removeClass("button-disabled");
+        $post_story_button.attr("disabled", false);
+      } else {
+        $post_story_button.addClass("button-disabled");
+        $post_story_button.attr("disabled", true);
+      }
     });
 
     $post_story_button.click(function() {
-      if (seconds_remaining > 0 && !confirm("Submit early?")) {
+      if (seconds_remaining > 0 && !confirm("You still have " + $timer.text() + " to go.\n\nSubmit?")) {
+        $story_input.focus();
         return false;
       }
     });

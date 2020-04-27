@@ -25,6 +25,6 @@
   - if @story.id.present?
     = f.submit "Update Story", class:"button"
   - else
-    = f.submit "Post", class:"button button-disabled js-story-post-button"
+    = f.submit "Post", class:"button button-disabled js-story-post-button", disabled:""
     .button.button-secondary.js-story-edit-button.hidden
       | Edit
