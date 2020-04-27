@@ -10,6 +10,9 @@ $(document).ready(function() {
     var seconds_remaining = $timer.attr('data-story-time')
     console.log( seconds_remaining );
 
+    var $post_story_button = $(".js-story-post-button");
+    var $edit_story_button = $(".js-story-edit-button");
+
     function update_timer_display() {
       let padded_seconds = ("00" + (seconds_remaining % 60)).slice(-2);
       $timer.text(Math.floor(seconds_remaining / 60) + ":" + padded_seconds);
