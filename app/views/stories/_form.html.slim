@@ -18,7 +18,7 @@
         = "#{distance_of_time_in_words(@topic.write_time)}"
       br
       .button.js-story-timer-start
-        | Click to Start
+        | Start Writing
     = f.text_area :text, class: "text-area story-input", disabled: true
   = f.hidden_field :topic_id, value: @topic.id
 
