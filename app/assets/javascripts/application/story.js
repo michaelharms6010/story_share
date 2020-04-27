@@ -68,7 +68,7 @@ $(document).ready(function() {
     });
 
     $post_story_button.click(function() {
-      if (seconds_remaining > 0 && !confirm("You still have " + $timer.text() + " to go.\n\nSubmit?")) {
+      if (seconds_remaining > 0 && !confirm("You have " + $timer.text() + " to go.\n\nSubmit anyway?")) {
         $story_input.focus();
         return false;
       }
