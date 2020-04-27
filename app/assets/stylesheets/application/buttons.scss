@@ -10,6 +10,9 @@
   padding: .7em 2em;
   border-radius: 5px;
   border: 0;
+  display: inline-block;
+  margin: 5px;
+  min-width: 125px;
   &:hover {
     background-color: $color-link-hover;
     color: #fff;
@@ -21,15 +24,33 @@
   }
 }
 
+.button-secondary {
+  border: 1px solid $color-link;
+  color: $color-link;
+  background-color: #fff;
+  &:hover {
+    color: $color-link;
+    background-color: $color-link-light;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  &:focus {
+    color: $color-link;
+  }
+}
+
 .button-block {
   display: block;
   width: 100%;
 }
 
 .button-disabled {
+  border: none;
+  color: #fff;
   background-color: #999;
   &:hover {
     cursor: default;
     background-color: #999;
+    color: #fff;
   }
 }

@@ -23,8 +23,8 @@
   = f.hidden_field :topic_id, value: @topic.id
 
   - if @story.id.present?
-    = f.submit "Update Story", class:"button button-primary"
+    = f.submit "Update Story", class:"button"
   - else
-    .button.button-primary.js-story-edit-button
+    = f.submit "Post", class:"button js-story-post-button", disabled: ""
+    .button.button-secondary.js-story-edit-button
       | Edit
-    = f.submit "Post", class:"button button-primary js-story-post-button", disabled: ""
