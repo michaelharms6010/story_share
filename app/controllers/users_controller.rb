@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  before_action :logged_in_user, only: [:index, :edit, :destroy, :show, :invite, :create_invite]
+  before_action :logged_in_user, only: [:index, :edit, :destroy, :show, :invite, :create_invite, :profile]
   before_action :correct_user,   only: [:update]
   before_action :is_friend,      only: [:show]
   before_action :admin_user,     only: :destroy
@@ -12,6 +12,11 @@ class UsersController < ApplicationController
   def invite
     @invite = {first_name: "", last_name: "", email: "", message: ""}
     @user = User.new
+  end
+
+  def profile
+    @user = current_user
+    render "show"
   end
 
   def create

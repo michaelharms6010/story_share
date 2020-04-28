@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   delete '/logout',  to: 'sessions#destroy'
 
   resources :users, only: [:new, :create, :update, :show, :edit]
+  get    '/profile',   to: 'users#profile'
   get    '/invite',   to: 'users#invite'
   post   '/create_invite', to: 'users#create_invite'
 

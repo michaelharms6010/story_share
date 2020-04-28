@@ -70,7 +70,7 @@ ActiveRecord::Schema.define(version: 2020_04_28_183937) do
     t.string "time_zone", default: "Pacific Time (US & Canada)", null: false
     t.boolean "show_full_name", default: false, null: false
     t.integer "invited_by"
-    t.boolean "password_validated", default: false, null: false
+    t.boolean "profile_completed", default: false, null: false
     t.integer "streak", default: 0, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["invited_by"], name: "index_users_on_invited_by"

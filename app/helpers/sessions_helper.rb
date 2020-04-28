@@ -44,7 +44,7 @@ module SessionsHelper
     elsif !activated?
       flash[:warning] = "Please check your email to activate your account."
       redirect_to root_url
-    elsif !current_user.password_confirmed
+    elsif !current_user.password_validated
       redirect_to root_url
     end
   end
