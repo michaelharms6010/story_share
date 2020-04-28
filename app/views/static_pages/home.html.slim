@@ -1,8 +1,8 @@
-h1 Home
-
-hr
-
 - if !@user.present? || !@user.activated
+  h1 Home
+
+  hr
+
   p Welcome to Story Friends!
 
   p Visit for a new writing prompt each day.
@@ -14,6 +14,10 @@ hr
 - elsif @user.present? && (@user.name.nil? || @user.errors.present?)
 
   .form-container
+
+    h1 Complete your profile
+
+    hr
 
     = render "/users/form", user: @user
 
