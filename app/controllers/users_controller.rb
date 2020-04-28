@@ -43,6 +43,7 @@ class UsersController < ApplicationController
 
   def edit
     @user = current_user
+    @user.name = "" if @current_user.is_guest
   end
 
   def update
