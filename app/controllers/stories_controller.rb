@@ -4,7 +4,7 @@ class StoriesController < ApplicationController
 
   def new
     @story = Story.new
-    @topic = current_user.next_topic
+    @topic = current_user.next_topic if current_user.story_available
   end
 
   def edit
@@ -31,7 +31,8 @@ class StoriesController < ApplicationController
       flash[:success] = "Story created!"
       redirect_to stories_path
     else
-      redirect_to stories_path
+      @topic = current_user.next_topic
+      render 'new'
     end
   end
 

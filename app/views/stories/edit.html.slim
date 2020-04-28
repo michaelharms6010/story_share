@@ -1,6 +1,6 @@
-.form-container
+h1 Edit Story
 
-  h1 Edit Story
+hr
 
-  = form_for(@story) do |f|
-    = render "form", f:f
+= form_for @story, html: {class: "js-story-form"} do |f|
+  = render "form", f:f

@@ -1,15 +1,17 @@
 $(document).ready(function() {
 
-  if ($(".js-story-timer").length > 0) {
+  if ($(".js-story-form").length > 0) {
 
     // On story page
+    var $story_form = $(".js-story-form");
     var $timer = $(".js-story-timer");
     var $timer_start_button = $(".js-story-timer-start");
     var $story_input_overlay = $(".story-input-overlay");
     var $story_input = $(".story-input");
     var seconds_remaining = $timer.attr('data-story-time')
+    seconds_remaining = 5
 
-    var $post_story_button = $(".js-story-post-button");
+    var $submit_story_button = $(".js-story-submit-button");
     var $edit_story_button = $(".js-story-edit-button");
 
     function update_timer_display() {
@@ -56,21 +58,24 @@ $(document).ready(function() {
       }
     });
 
-    $story_input.on("keydown input", function() {
-      text = $story_input.val()
-      if (text.length > 0) {
-        $post_story_button.removeClass("button-disabled");
-        $post_story_button.attr("disabled", false);
-      } else {
-        $post_story_button.addClass("button-disabled");
-        $post_story_button.attr("disabled", true);
-      }
-    });
-
-    $post_story_button.click(function() {
+    $story_form.submit(function() {
       if (seconds_remaining > 0 && !confirm("You have " + $timer.text() + " to go.\n\nSubmit anyway?")) {
         $story_input.focus();
         return false;
+      } else {
+        $story_input.attr("disabled", false);
+        return true;
+      }
+    });
+
+    $story_input.on("keydown input", function() {
+      text = $story_input.val()
+      if (text.length > 0) {
+        $submit_story_button.removeClass("button-disabled");
+        $submit_story_button.attr("disabled", false);
+      } else {
+        $submit_story_button.addClass("button-disabled");
+        $submit_story_button.attr("disabled", true);
       }
     });
 
