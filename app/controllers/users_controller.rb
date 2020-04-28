@@ -21,7 +21,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    @user.password_validated = @user.name.present? && params[:user][:password].present?
+    @user.profile_complete = @user.name.present? && params[:user][:password].present?
     if @user.save
       @user.send_activation_email
       flash[:info] = "Please check your email to activate your account."
@@ -36,7 +36,7 @@ class UsersController < ApplicationController
     random_password = SecureRandom.urlsafe_base64
     @user = User.new(password: random_password, password_confirmation: random_password,
                     email: @invite[:email], first_name: @invite[:first_name], last_name: @invite[:last_name],
-                    password_validated: false)
+                    profile_complete: false)
     if @user.save
       @user.send_invite_email(current_user, params[:message])
       flash[:info] = "Invite sent!"
@@ -53,7 +53,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     # pry
-    if !@user.password_validated
+    if !@user.profile_complete
       @user.update(user_params)
       @user.errors.add(:password, "must be updated") if params[:user][:password].blank?
       if @user.errors.present?
