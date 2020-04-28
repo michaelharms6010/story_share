@@ -171,7 +171,7 @@ class User < ApplicationRecord
 
     # Converts name to all lower-case but save capitalized name to name_formatted.
     def downcase_name
-      if name_changed?
+      if name_changed? && self.name.present?
         self.name_formatted = name
         self.name = name.downcase
       end

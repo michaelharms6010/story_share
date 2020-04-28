@@ -11,7 +11,7 @@ hr
 
   p Log in or create an account to start writing and sharing today!
 
-- elsif @user.present? && @user.name.nil?
+- elsif @user.present? && (@user.name.nil? || @user.errors.present?)
 
   .form-container
 

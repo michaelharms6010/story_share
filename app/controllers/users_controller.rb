@@ -41,12 +41,21 @@ class UsersController < ApplicationController
 
   def edit
     @user = current_user
-    @user.name = "" if @current_user.is_guest
   end
 
   def update
     @user = User.find(params[:id])
-    if @user.update(user_params)
+    # pry
+    if @user.name.nil?
+      @user.update(user_params)
+      @user.errors.add(:password, "must be updated") if params[:user][:password].blank?
+      if @user.errors.present?
+        render "static_pages/home"
+      else
+        flash[:success] = "Profile updated"
+        redirect_to root_url
+      end
+    elsif @user.update(user_params)
       flash[:success] = "Profile updated"
       redirect_to "/users/#{@user.name}"
     else
