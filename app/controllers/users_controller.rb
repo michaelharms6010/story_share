@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  before_action :logged_in_user, only: [:index, :edit, :update, :destroy, :show, :invite, :create_invite]
+  before_action :logged_in_user, only: [:index, :edit, :destroy, :show, :invite, :create_invite, :complete_profile]
   before_action :correct_user,   only: [:update]
   before_action :is_friend,      only: [:show]
   before_action :admin_user,     only: :destroy
@@ -27,11 +27,9 @@ class UsersController < ApplicationController
 
   def create_invite
     @invite = {first_name: params[:first_name], last_name: params[:last_name], email: params[:email], message: params[:message]}
-    random_name = (0...12).map { (65 + rand(26)).chr }.join
     random_password = SecureRandom.urlsafe_base64
-    @user = User.new(name: random_name, password: random_password, password_confirmation: random_password,
-                    email: @invite[:email], first_name: @invite[:first_name], last_name: @invite[:last_name],
-                    is_guest: true)
+    @user = User.new(password: random_password, password_confirmation: random_password,
+                    email: @invite[:email], first_name: @invite[:first_name], last_name: @invite[:last_name])
     if @user.save
       @user.send_invite_email(current_user, params[:message])
       flash[:info] = "Invite sent!"

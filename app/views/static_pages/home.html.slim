@@ -11,6 +11,12 @@ hr
 
   p Log in or create an account to start writing and sharing today!
 
+- elsif @user.present? && @user.name.nil?
+
+  .form-container
+
+    = render "/users/form", user: @user
+
 - else
 
   - if @user.story_available

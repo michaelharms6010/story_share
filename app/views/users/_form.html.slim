@@ -1,0 +1,41 @@
+= form_for(user) do |f|
+  = render 'shared/error_messages', obj: user
+
+  .form-row
+    = f.label :username
+    = f.text_field :name, class: 'form-control text-field', placeholder: "Username"
+
+  - if !user.activated
+    .form-row
+      = f.label :email
+      = f.email_field :email, class: 'form-control text-field', placeholder: "Email"
+
+  .form-row
+    = f.label :time_zone
+    = f.select :time_zone, options_for_select(User.time_zones_for_select, selected: @user.time_zone)
+
+  .form-row
+    = f.label :password
+    = f.password_field :password, class: 'form-control text-field', placeholder: "Password"
+
+  .form-row
+    = f.label "Confirm password"
+    = f.password_field :password_confirmation, class: 'form-control text-field', placeholder: "Confirm password"
+
+  .form-row
+    .two-col
+      = f.label "First name (optional)"
+      = f.text_field :first_name, class: 'form-control'
+
+    .two-col
+      = f.label "Last name (optional)"
+      = f.text_field :last_name, class: 'form-control'
+
+    .two-col
+      = f.check_box :show_full_name, class: 'inline-checkbox'
+      strong Show full name (optional)
+
+  - if user.activated
+    = f.submit "Update", class: "button"
+  - else
+    = f.submit "Create account", class: "button"

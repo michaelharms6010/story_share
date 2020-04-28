@@ -11,7 +11,6 @@ Rails.application.routes.draw do
   get    '/invite',   to: 'users#invite'
   post   '/create_invite', to: 'users#create_invite'
 
-
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]
 
