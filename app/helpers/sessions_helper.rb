@@ -36,6 +36,17 @@ module SessionsHelper
     redirect_to(root_url) unless logged_in? && current_user.admin
   end
 
+  def logged_in_profile_incomplete
+    if !logged_in?
+      store_location
+      flash[:danger] = "Please log in."
+      redirect_to login_url
+    elsif !activated?
+      flash[:warning] = "Please check your email to activate your account."
+      redirect_to root_url
+    end
+  end
+
   def logged_in_user
     if !logged_in?
       store_location
@@ -44,8 +55,8 @@ module SessionsHelper
     elsif !activated?
       flash[:warning] = "Please check your email to activate your account."
       redirect_to root_url
-    elsif !current_user.profile_complete
-      redirect_to root_url
+    elsif !current_user.profile_completed
+      redirect_to profile_edit_url
     end
   end
 

@@ -11,16 +11,6 @@
 
   p Log in or create an account to start writing and sharing today!
 
-- elsif @user.present? && (@user.name.nil? || @user.errors.present?)
-
-  .form-container
-
-    h1 Complete your profile
-
-    hr
-
-    = render "/users/form", user: @user
-
 - else
 
   - if @user.story_available

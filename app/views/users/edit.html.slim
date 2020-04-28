@@ -2,30 +2,5 @@
 
   h1 Update your profile
 
-  = form_for(@user) do |f|
-    = render 'shared/error_messages', obj: @user
+  = render "form", user: @user
 
-    .form-row
-      = f.label :username
-      = f.text_field :name, class: 'form-control'
-
-    .form-row
-      = f.label :time_zone
-      = f.select :time_zone, options_for_select(User.time_zones_for_select, selected: @user.time_zone)
-
-    .form-row
-      .two-col
-        = f.label "First name (optional)"
-        = f.text_field :first_name, class: 'form-control'
-
-      .two-col
-        = f.label "Last name (optional)"
-        = f.text_field :last_name, class: 'form-control'
-
-      .two-col
-        = f.check_box :show_full_name, class: 'inline-checkbox'
-        strong Show full name (optional)
-
-    hr
-
-    = f.submit "Save changes", class: "button button-block"

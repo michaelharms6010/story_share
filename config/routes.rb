@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [:new, :create, :update, :show, :edit]
   get    '/profile',   to: 'users#profile'
+  get    '/profile/edit',   to: 'users#edit_profile'
   get    '/invite',   to: 'users#invite'
   post   '/create_invite', to: 'users#create_invite'
 

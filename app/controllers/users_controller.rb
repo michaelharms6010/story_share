@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 
   before_action :logged_in_user, only: [:index, :edit, :destroy, :show, :invite, :create_invite, :profile]
+  before_action :logged_in_profile_incomplete, only: [:edit_profile]
   before_action :correct_user,   only: [:update]
   before_action :is_friend,      only: [:show]
   before_action :admin_user,     only: :destroy
@@ -21,7 +22,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    @user.profile_complete = @user.name.present? && params[:user][:password].present?
+    @user.profile_completed = @user.name.present? && params[:user][:password].present?
     if @user.save
       @user.send_activation_email
       flash[:info] = "Please check your email to activate your account."
@@ -36,7 +37,7 @@ class UsersController < ApplicationController
     random_password = SecureRandom.urlsafe_base64
     @user = User.new(password: random_password, password_confirmation: random_password,
                     email: @invite[:email], first_name: @invite[:first_name], last_name: @invite[:last_name],
-                    profile_complete: false)
+                    profile_completed: false)
     if @user.save
       @user.send_invite_email(current_user, params[:message])
       flash[:info] = "Invite sent!"
@@ -50,10 +51,15 @@ class UsersController < ApplicationController
     @user = current_user
   end
 
+  def edit_profile
+    @user = current_user
+    render "edit"
+  end
+
   def update
     @user = User.find(params[:id])
     # pry
-    if !@user.profile_complete
+    if !@user.profile_completed
       @user.update(user_params)
       @user.errors.add(:password, "must be updated") if params[:user][:password].blank?
       if @user.errors.present?

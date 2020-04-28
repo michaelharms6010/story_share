@@ -5,6 +5,19 @@
     = f.label :username
     = f.text_field :name, class: 'form-control text-field', placeholder: "Username"
 
+  .two-col
+    = f.label "First name (optional)"
+    = f.text_field :first_name, class: 'form-control'
+
+  .two-col
+    = f.label "Last name (optional)"
+    = f.text_field :last_name, class: 'form-control'
+
+  .two-col
+    = f.check_box :show_full_name, class: 'inline-checkbox'
+    strong Show full name (optional)
+
+
   - if !user.activated
     .form-row
       = f.label :email
@@ -21,19 +34,6 @@
   .form-row
     = f.label "Confirm password"
     = f.password_field :password_confirmation, class: 'form-control text-field', placeholder: "Confirm password"
-
-  .form-row
-    .two-col
-      = f.label "First name (optional)"
-      = f.text_field :first_name, class: 'form-control'
-
-    .two-col
-      = f.label "Last name (optional)"
-      = f.text_field :last_name, class: 'form-control'
-
-    .two-col
-      = f.check_box :show_full_name, class: 'inline-checkbox'
-      strong Show full name (optional)
 
   - if user.activated
     = f.submit "Update", class: "button"
