@@ -1,0 +1,11 @@
+.form-container
+
+  - if current_user.profile_completed
+    h1 Update your profile
+  - else
+    h1 Complete your profile
+
+  hr
+
+  = render "form", user: @user
+

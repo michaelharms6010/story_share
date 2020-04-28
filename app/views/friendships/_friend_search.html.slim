@@ -18,9 +18,9 @@ div
       - elsif @friendship_request.inverse_friendship.confirmed
         = render "friendship", friendship: @friendship_request
       - elsif @friendship_request.present?
-        = @search_friend.name_formatted
-        | Request sent
-
+    - elsif @friendship_request.present?
+      strong = @search_friend.name_formatted
+      div Request sent
     - else
       = @search_friend.name_formatted
       = form_for(@friendship) do |f|

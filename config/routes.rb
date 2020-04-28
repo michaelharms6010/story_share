@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
 
-  resources :users, only: [:new, :create, :update, :show, :edit]
+  resources :users, only: [:new, :create, :show, :update]
   get    '/profile',   to: 'users#profile'
   get    '/profile/edit',   to: 'users#edit_profile'
   get    '/invite',   to: 'users#invite'

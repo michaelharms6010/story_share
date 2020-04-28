@@ -1,8 +1,7 @@
 class UsersController < ApplicationController
 
-  before_action :logged_in_user, only: [:index, :edit, :destroy, :show, :invite, :create_invite, :profile]
-  before_action :logged_in_profile_incomplete, only: [:edit_profile]
-  before_action :correct_user,   only: [:update]
+  before_action :logged_in_user, only: [:index, :destroy, :show, :invite, :create_invite, :profile]
+  before_action :logged_in_profile_incomplete, only: [:edit_profile, :update]
   before_action :is_friend,      only: [:show]
   before_action :admin_user,     only: :destroy
 
@@ -47,32 +46,27 @@ class UsersController < ApplicationController
     end
   end
 
-  def edit
-    @user = current_user
-  end
-
   def edit_profile
     @user = current_user
-    render "edit"
   end
 
   def update
-    @user = User.find(params[:id])
-    # pry
+    @user = current_user
     if !@user.profile_completed
       @user.update(user_params)
       @user.errors.add(:password, "must be updated") if params[:user][:password].blank?
       if @user.errors.present?
-        render "static_pages/home"
+        render "edit_profile"
       else
+        @user.update(profile_completed: true)
         flash[:success] = "Profile updated"
         redirect_to root_url
       end
     elsif @user.update(user_params)
       flash[:success] = "Profile updated"
-      redirect_to "/users/#{@user.name}"
+      redirect_to profile_path
     else
-      render 'edit'
+      render 'edit_profile'
     end
   end
 

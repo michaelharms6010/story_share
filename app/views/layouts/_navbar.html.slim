@@ -25,11 +25,12 @@
           i.navbar-fa.fa.fa-lg.fa-user
           span.navbar-text-margin-left
             | Profile
-      = link_to logout_path, method: "delete", data: {confirm: "Are you sure you want to log out?"} do
-        .navbar-cell.navbar-text.navbar-cell-bottom
-          i.navbar-fa.fa.fa-lg.fa-sign-out
-          span.navbar-text-margin-left
-            | Log Out
+      - if current_user.profile_completed
+        = link_to logout_path, method: "delete", data: {confirm: "Are you sure you want to log out?"} do
+          .navbar-cell.navbar-text.navbar-cell-bottom
+            i.navbar-fa.fa.fa-lg.fa-sign-out
+            span.navbar-text-margin-left
+              | Log Out
     - else
       = link_to login_path do
         .navbar-cell.navbar-text
