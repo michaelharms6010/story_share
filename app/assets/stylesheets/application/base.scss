@@ -129,6 +129,8 @@ iframe.embedded-youtube {
   padding: 30px;
   display: block;
   margin: auto;
+  height: 100%;
+  overflow-y: scroll;
 
   @include desktop {
     left: $navbar-desktop-width;
