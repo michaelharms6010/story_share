@@ -8,7 +8,7 @@ class User < ApplicationRecord
   attr_accessor :remember_token, :activation_token, :reset_token
 
   validates :name,  presence: true, length: { maximum: 20 , minimum: 3},
-                    uniqueness: { case_sensitive: false }
+                    uniqueness: { case_sensitive: false }, allow_nil: true
   validates_format_of :name, :with => /\A[a-zA-Z\d]*\z/i,
   :message => "can only contain letters and numbers."
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
