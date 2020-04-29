@@ -3,11 +3,12 @@ $(document).ready(function() {
 
   if ($(".js-debug-stats").length > 0) {
 
-    $(".js-debug-stats").text("Window width: " + window.innerWidth);
+    $(".js-debug-stats").html("Window width: " + window.innerWidth);
 
     if ($(".js-story-timer-start").length > 0) {
-      $(".js-story-timer-start").click(function() {
-        $(".js-debug-stats").text("TIMER CLICKED");
+      $("div").on("click", function() {
+        console.log($(this).html())
+        $(".js-debug-stats").html($(".js-debug-stats").html() + "</br>" + $(this).attr("class"));
       })
     }
   }
