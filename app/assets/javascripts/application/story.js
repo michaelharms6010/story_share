@@ -9,7 +9,6 @@ $(document).ready(function() {
     var $story_input_overlay = $(".story-input-overlay");
     var $story_input = $(".story-input");
     var seconds_remaining = $timer.attr('data-story-time')
-    seconds_remaining = 5
 
     var $submit_story_button = $(".js-story-submit-button");
     var $edit_story_button = $(".js-story-edit-button");
