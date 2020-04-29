@@ -10,7 +10,7 @@ hr
 
   p Write for 5 minutes and post your response, then see what your friends wrote.
 
-  - if !@user.activated
+  - if @user.present? && !@user.activated
     p Log in or create an account to start writing and sharing today!
   - else
     p Check your email to activate your account to start writing and sharing today!
