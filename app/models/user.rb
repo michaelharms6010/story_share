@@ -72,7 +72,7 @@ class User < ApplicationRecord
   end
 
   def all_stories
-    Story.where(user_id: self.friendships.select(:friend_id)).or(Story.where(user_id: self.id)).order("updated_at DESC")
+    Story.where(user_id: self.friendships.where(confirmed: true).select(:friend_id)).or(Story.where(user_id: self.id)).order("updated_at DESC")
   end
 
   # Get the next topic
