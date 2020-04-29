@@ -10,7 +10,7 @@ class UsersController < ApplicationController
   end
 
   def invite
-    @invite = {first_name: "", last_name: "", email: "", message: ""}
+    @invite = {email: "", message: ""}
     @user = User.new
   end
 
@@ -32,11 +32,10 @@ class UsersController < ApplicationController
   end
 
   def create_invite
-    @invite = {first_name: params[:first_name], last_name: params[:last_name], email: params[:email], message: params[:message]}
+    @invite = {email: params[:email], message: params[:message], invited_by: current_user.id}
     random_password = SecureRandom.urlsafe_base64
     @user = User.new(password: random_password, password_confirmation: random_password,
-                    email: @invite[:email], first_name: @invite[:first_name], last_name: @invite[:last_name],
-                    profile_completed: false)
+                    email: @invite[:email], profile_completed: false)
     if @user.save
       @user.send_invite_email(current_user, params[:message])
       flash[:info] = "Invite sent!"
@@ -59,6 +58,7 @@ class UsersController < ApplicationController
         render "edit_profile"
       else
         @user.update(profile_completed: true)
+        Friendship.create_and_confirm_bidirectional_friendship(@user.id, @user.invited_by) if @user.invited_by.present?
         flash[:success] = "Profile updated"
         redirect_to root_url
       end

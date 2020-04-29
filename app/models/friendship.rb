@@ -14,6 +14,12 @@ class Friendship < ActiveRecord::Base
     end
   end
 
+  def self.create_and_confirm_bidirectional_friendship(user_id, friend_id)
+    if Friendship.create(user_id: user_id, friend_id: friend_id, confirmed: true, accepted: true)
+      Friendship.create(user_id: friend_id, friend_id: user_id, confirmed: true, accepted: true)
+    end
+  end
+
   def friends?
     self.confirmed && self.accepted && self.inverse_friendship.confirmed && self.inverse_friendship.accepted
   end
