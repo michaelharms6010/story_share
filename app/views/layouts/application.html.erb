@@ -12,6 +12,11 @@
   <%= render "layouts/navbar" %>
   <body>
     <div class="container">
+      <% if current_user.present? && current_user.admin %>
+        <div>Debug</div>
+        <div class="js-debug-stats"></div>
+      <% end %>
+
       <% flash.each do |message_type, message| %>
         <% unless message_type == "custom_error" %>
           <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
