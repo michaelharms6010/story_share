@@ -8,7 +8,7 @@ $(document).ready(function() {
     if ($(".js-story-timer-start").length > 0) {
       $("div").on("click", function() {
         console.log($(this).html())
-        $(".js-debug-stats").html($(".js-debug-stats").html() + "</br>" + $(this).attr("class"));
+        $(".js-debug-stats").text($(".js-debug-stats").html() + "</br>" + $(this).html());
       })
     }
   }
