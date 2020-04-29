@@ -35,7 +35,7 @@ class UsersController < ApplicationController
     @invite = {email: params[:email], message: params[:message], invited_by: current_user.id}
     random_password = SecureRandom.urlsafe_base64
     @user = User.new(password: random_password, password_confirmation: random_password,
-                    email: @invite[:email], profile_completed: false)
+                    email: @invite[:email], profile_completed: false, invited_by: current_user.id)
     if @user.save
       @user.send_invite_email(current_user, params[:message])
       flash[:info] = "Invite sent!"
