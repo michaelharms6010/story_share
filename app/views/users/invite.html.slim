@@ -6,17 +6,6 @@
     = render 'shared/error_messages', obj: @user
 
     .form-row
-      .two-col
-        strong First name (optional)
-        div
-          = text_field_tag :first_name, @invite[:first_name], class: "form-control", placeholder: "John"
-
-      .two-col
-        strong Last name (optional)
-        div
-          = text_field_tag :last_name, @invite[:last_name], class: "form-control", placeholder: "Doe"
-
-    .form-row
       strong Email
       div
         = email_field_tag :email, @invite[:email], class: "form-control", placeholder: "friend@email.com"
