@@ -38,8 +38,13 @@ class User < ApplicationRecord
     !!VALID_EMAIL_REGEX.match(test_string)
   end
 
-  def self.topics_answered
+  def topics_answered
     self.stories.select(:topic_id)
+  end
+
+  # Show stories that have been also answered by a given friend
+  def friend_stories(friend)
+    self.stories.where(topic_id: friend.topics_answered)
   end
 
   def self.time_zones_for_select
@@ -76,7 +81,7 @@ class User < ApplicationRecord
   end
 
   def all_stories
-    Story.where(user_id: self.friendships.where(confirmed: true).select(:friend_id)).or(Story.where(user_id: self.id)).order("updated_at DESC")
+    Story.where(user_id: self.friendships.where(confirmed: true).select(:friend_id), topic_id: self.topics_answered).or(Story.where(user_id: self.id)).order("updated_at DESC")
   end
 
   # Get the next topic
