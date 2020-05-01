@@ -38,6 +38,10 @@ class User < ApplicationRecord
     !!VALID_EMAIL_REGEX.match(test_string)
   end
 
+  def self.topics_answered
+    self.stories.select(:topic_id)
+  end
+
   def self.time_zones_for_select
     time_zones = [["American Samoa", "SST"], ["Hawaii", "HST"], ["Alaska", "AKST"], ["Pacific Time (US & Canada)", "PST"], ["Mountain Time (US & Canada)", "MST"], ["Central Time (US & Canada)", "CST"], ["Eastern Time (US & Canada)", "EST"], ["Atlantic Time (Canada)", "AST"], ["Newfoundland", "NST"], ["Buenos Aires", "ART"], ["Mid-Atlantic", "GST"], ["Azores", "AZOT"], ["London", "GMT"], ["Berlin", "CET"], ["Athens", "EET"], ["Moscow", "MSK"], ["Tehran", "IRDT"], ["Samara", "SAMT"], ["Kabul", "AFT"], ["Islamabad", "PKT"], ["Mumbai", "IST"], ["Kathmandu", "NPT"], ["Dhaka", "BST"], ["Bangkok", "ICT"], ["Beijing", "CST"], ["Tokyo", "JST"], ["Adelaide", "ACST"], ["Sydney", "AET"], ["New Caledonia", "NCT"], ["Fiji", "FJT"], ["Chatham Is.", "CHAST"], ["Samoa", "WST"]]
     select_options = {}
