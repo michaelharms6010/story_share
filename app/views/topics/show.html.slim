@@ -3,3 +3,20 @@
   h1
     = @topic.prompt
 
+  hr
+
+  - @stories.each do |story|
+    span.story-feed-portrait
+    .story-feed-byline
+      = link_to story.user.display_name, "/users/#{story.user.name}", class: "link_inherit_color"
+      .story-feed-publish-date
+        = story.created_at.in_time_zone.strftime("%B %d, %Y, %l:%M%P")
+
+
+
+    .story-feed-text
+      == story.html_text
+
+    hr
+
+  = paginate(@stories)

@@ -37,6 +37,8 @@ class TopicsController < ApplicationController
   def show
     topic_id = params[:id]
     @topic = Topic.find(topic_id)
+    @my_story = Story.where(user_id: current_user.id, topic_id: topic_id)
+    @stories = Story.where(user_id: current_user.friendships.where(accepted: true).select(:friend_id), topic_id: topic_id).or(Story.where(user_id: current_user.id, topic_id: topic_id)).order("updated_at DESC").page(params[:page])
   end
 
   def index
