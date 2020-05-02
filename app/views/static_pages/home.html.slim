@@ -33,6 +33,7 @@ hr
   - else
     = render "stories/prompt_timer"
 
-
   - @stories.each do |story|
     = render "stories/story", story: story
+
+  = paginate(@stories)
