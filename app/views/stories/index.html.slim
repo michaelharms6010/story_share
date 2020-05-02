@@ -9,4 +9,7 @@
 
   hr
 
-  = render @stories
+  ul
+    - @topics.each do |topic|
+      li
+        = link_to topic.prompt, topic

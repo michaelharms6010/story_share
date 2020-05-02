@@ -42,7 +42,7 @@ class StoriesController < ApplicationController
   end
 
   def index
-    @stories = current_user.stories
+    @topics = Topic.where(id: current_user.stories.select(:topic_id))
   end
 
   private
