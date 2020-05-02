@@ -13,3 +13,5 @@
     - @topics.each do |topic|
       li
         = link_to topic.prompt, topic
+
+  = paginate(@topics)
