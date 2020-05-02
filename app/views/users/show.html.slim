@@ -9,7 +9,7 @@ div
 - if current_user?(@user)
   br
   div
-    = link_to "Edit Profile", "/users/#{@user.name}/edit", class: "button"
+    = link_to "Edit Profile", profile_edit_path, class: "button"
 - elsif !current_user.friends?(@user)
   br
   = form_for(@friendship) do |f|
