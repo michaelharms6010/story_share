@@ -3,10 +3,16 @@ h1
 
   = link_to "Invite", invite_url, class: "button"
 
-= render "friend_search"
+p
+  em
+    | Invite or search for friends!
 
 hr
 
+h3
+  | Search
+= render "friend_search"
+hr
 - if @friendship_requests.present?
   h2 Requests
 
