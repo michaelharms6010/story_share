@@ -42,7 +42,7 @@ class StoriesController < ApplicationController
   end
 
   def index
-    @topics = Topic.where(id: current_user.stories.select(:topic_id)).page(params[:page]).limit(5)
+    @topics = Topic.where(id: current_user.stories.select(:topic_id)).page(params[:page])
   end
 
   private
