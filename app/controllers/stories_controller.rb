@@ -42,7 +42,7 @@ class StoriesController < ApplicationController
   end
 
   def index
-    @topics = Topic.where(id: current_user.stories.select(:topic_id)).page(params[:page])
+    @topics = Topic.where(id: current_user.stories.select(:topic_id)).page(params[:page]).order("id DESC")
   end
 
   private
