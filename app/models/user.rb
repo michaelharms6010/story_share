@@ -140,6 +140,10 @@ class User < ApplicationRecord
     reset_sent_at < 2.hours.ago
   end
 
+  def num_friend_requests
+    self.friendships.where(confirmed: false, accepted: true).count
+  end
+
   # def add_friend(friend_username)
   #   friend = User.find_by(name: friend_username.downcase)
   #   Friendship.create_bidirectional_friendship(self, friend)

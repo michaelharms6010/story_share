@@ -17,6 +17,9 @@
     = link_to friendships_path do
       .navbar-cell.navbar-text
         i.navbar-fa.fa.fa-lg.fa-users
+        - if current_user.present? && current_user.num_friend_requests > 0
+          .navbar-friendships-overlay
+            = current_user.num_friend_requests
         span.navbar-text-margin-left
           | Friends
     - if logged_in?
