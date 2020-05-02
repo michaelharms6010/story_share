@@ -1,5 +1,7 @@
 class TopicsController < ApplicationController
   before_action :admin_user, only: [:create, :destroy, :new, :edit, :update, :index]
+  before_action :logged_in_user, only: [:show]
+  before_action :answered_prompt, only: [:show]
 
   def new
     @topic = Topic.new
@@ -45,6 +47,13 @@ class TopicsController < ApplicationController
 
   def topic_params
     params.require(:topic).permit(:prompt, :length)
+  end
+
+  def answered_prompt
+    if !current_user.stories.exists?(topic_id: params[:id])
+      flash[:danger] = "You have not answered that topic yet."
+      redirect_to stories_path
+    end
   end
 
 end
