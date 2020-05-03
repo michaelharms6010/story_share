@@ -3,9 +3,9 @@
   = render "stories/prompt_timer"
 
 - else
+  - is_edit = @story.id.present?
 
   = render 'shared/error_messages', obj: @story
-
 
   br
 
@@ -16,19 +16,20 @@
     = "#{(@topic.write_time / 60).to_i}:00"
 
   .story-input-container
-    .story-input-overlay
-      div
-        = "#{distance_of_time_in_words(@topic.write_time)}"
-      br
-      .button.js-story-timer-start
-        | Start Writing
+    - if !is_edit
+      .story-input-overlay
+        div
+          = "#{distance_of_time_in_words(@topic.write_time)}"
+        br
+        .button.js-story-timer-start
+          | Start Writing
     = f.text_area :text, class: "text-area story-input", disabled: true
   = f.hidden_field :topic_id, value: @topic.id
 
   - if @story.id.present?
-    div
-      | TODO: ADD EDIT
-    / = f.submit "Update Story", class:"button"
+    = f.submit "Update", class:"button button-disabled js-story-submit-button", disabled: ""
+    .button.button-secondary.js-story-edit-button
+      | Edit
   - else
     = f.submit "Post", class:"button button-disabled js-story-submit-button", disabled:""
     .button.button-secondary.js-story-edit-button.hidden
