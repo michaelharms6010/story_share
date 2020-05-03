@@ -9,6 +9,7 @@ class StoriesController < ApplicationController
 
   def edit
     @story = Story.find(params[:id])
+    @topic = @story.topic
   end
 
   def update
