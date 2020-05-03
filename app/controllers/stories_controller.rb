@@ -30,7 +30,7 @@ class StoriesController < ApplicationController
     @story[:user_id] = current_user.id
     if @story.save
       flash[:success] = "Story created!"
-      redirect_to stories_path
+      redirect_to root_path
     else
       @topic = current_user.next_topic
       render 'new'
