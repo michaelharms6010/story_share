@@ -12,4 +12,8 @@ class Story < ActiveRecord::Base
     "<p>" + self.text.split("\n").join("</p><p>") + "</p>"
   end
 
+  def friends_answered(user, topic_id)
+    Story.where(topic_id: topic_id, user_id: user.friendships.where(accepted: true).select(:friend_id)).count
+  end
+
 end

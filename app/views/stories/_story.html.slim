@@ -1,5 +1,7 @@
 
 
+
+
 .story-feed-heading
   = link_to "#{story.topic.prompt}", story, class: "link_inherit_color"
 span.story-feed-portrait
@@ -12,5 +14,11 @@ span.story-feed-portrait
 
 .story-feed-text
   == story.html_text
+
+
+- if defined?(detail) && detail
+  - friends_answered = story.friends_answered(current_user, story.topic_id)
+  = link_to "Edit", edit_story_path(story), class: "button button-primary"
+  = link_to "View #{friends_answered} friend #{'story'.pluralize(friends_answered)}", topic_path(story.topic), class: "button button-secondary"
 
 hr
