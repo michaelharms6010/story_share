@@ -1,0 +1,14 @@
+- provide(:title, "Forgot password")
+
+.container
+  .form-container
+    h1 Forgot password
+
+    = form_for(:password_reset, url: password_resets_path) do |f|
+      .form-row
+        = f.label :email
+        = f.email_field :email, class: 'form-control text-field', placeholder: "Email"
+
+      .form-row
+
+      = f.submit "Submit", class: "button"
