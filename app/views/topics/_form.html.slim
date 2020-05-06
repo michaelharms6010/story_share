@@ -1,10 +1,10 @@
 .form-row
   label Prompt
-  = f.text_field :prompt, class: "text-field"
+  = f.text_field :prompt, class: "text-field form-control"
 
 .form-row
   label Length
-  = f.select(:length, Topic.length_options)
+  = f.select(:length, Topic.length_options, class: "form-control select")
 
 - if @topic.id.present?
   = f.submit "Update Topic", class:"btn btn-primary"
