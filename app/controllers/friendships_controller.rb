@@ -2,7 +2,7 @@ class FriendshipsController < ApplicationController
   before_action :logged_in_user,   only: [:show, :update, :create, :index, :search, :confirm]
 
   def index
-    @friends = current_user.friends
+    @friends = current_user.friends.page(params[:page])
     @user = current_user
 
     @friendship_requests = Friendship.where(confirmed: false, accepted: true, user_id: @user.id)
