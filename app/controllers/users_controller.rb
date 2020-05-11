@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 
   before_action :logged_in_user, only: [:index, :destroy, :show, :invite, :create_invite, :profile]
   before_action :logged_in_profile_incomplete, only: [:edit_profile, :update]
-  before_action :is_friend,      only: [:show]
+  before_action :is_friend,      only: [:show, :friends]
   before_action :admin_user,     only: :destroy
 
   def new
@@ -12,6 +12,10 @@ class UsersController < ApplicationController
   def invite
     @invite = {email: "", message: ""}
     @user = User.new
+  end
+
+  def friends
+    @friendships = @user.friendships
   end
 
   def profile
