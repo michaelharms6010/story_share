@@ -1,4 +1,7 @@
-li
-  strong
-    = link_to user.name_formatted, "/users/#{user.name}"
-  = " - #{user.stories.length} stories written"
+= link_to "/users/#{user.name}", class: "link_inherit_color" do
+  span.story-feed-portrait
+  .story-feed-byline
+    .link_inherit_color
+      = user.name_formatted
+    em
+      = "#{user.stories.length} stories"
