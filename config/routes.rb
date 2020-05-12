@@ -18,8 +18,8 @@ Rails.application.routes.draw do
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]
 
-  resources :topics,    only: [:new, :create, :destroy, :show, :edit, :update, :index]
-  resources :stories,   only: [:new, :create, :destroy, :show, :edit, :update, :index]
+  resources :topics,    only: [:new, :create, :show, :edit, :update, :index]
+  resources :stories,   only: [:new, :create, :show, :edit, :update, :index]
 
   resources :friendships, path: "friends",    only: [:show, :update, :create, :index] do
     member do

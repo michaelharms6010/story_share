@@ -22,9 +22,6 @@ class StoriesController < ApplicationController
     end
   end
 
-  def destroy
-  end
-
   def create
     @story = Story.new(story_params)
     @story[:user_id] = current_user.id
