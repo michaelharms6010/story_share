@@ -15,7 +15,7 @@ class UsersController < ApplicationController
   end
 
   def friends
-    @friendships = @user.friendships
+    @friends = @user.friends.page(params[:page])
   end
 
   def profile

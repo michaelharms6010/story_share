@@ -1,1 +1,8 @@
-h1 friends
+h1 = "#{@user.display_name}'s Friends"
+
+hr
+
+ul
+  = render @friends
+
+= paginate(@friends)
