@@ -18,11 +18,11 @@ ActiveRecord::Schema.define(version: 2020_05_12_221706) do
 
   create_table "comments", force: :cascade do |t|
     t.integer "story_id"
-    t.integer "commenter_id"
+    t.integer "user_id"
     t.text "text", default: "", null: false
     t.integer "visibility", default: 0, null: false
-    t.index ["commenter_id"], name: "index_comments_on_commenter_id"
     t.index ["story_id"], name: "index_comments_on_story_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "friendships", force: :cascade do |t|
