@@ -1,6 +1,10 @@
 h1
   = @user.display_name
 
+hr
+= link_to "friends", "/users/#{@user.name}/friends", class: "button button-primary"
+
+
 - if @user.show_full_name
   div
     em
@@ -13,7 +17,7 @@ h1
 - elsif !current_user.friends?(@user)
   br
   = form_for(@friendship) do |f|
-    = f.hidden_field :friend_id, value: @search_friend.id, class:"btn btn-primary"
+    = f.hidden_field :friend_id, value: @search_friend.id
     = f.submit "Add Friend", class:"btn btn-primary"
 
 
