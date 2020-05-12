@@ -1,5 +1,6 @@
 class User < ApplicationRecord
 
+  has_many :comments  # Keep comments, even if user is destroyed
   has_many :stories, dependent: :destroy
   has_many :friendships, dependent: :destroy
 
