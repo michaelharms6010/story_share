@@ -100,7 +100,7 @@ class UsersController < ApplicationController
 
     def is_friend
       @user = @user || User.find_by(name: params[:id].downcase)
-      if @user != current_user && !Friendship.exists?(user_id: current_user.id, friend_id: @user.id, accepted: true)
+      if @user != current_user && current_user.friends?(@user)
         flash[:danger] = "Must be friends to view profile."
         redirect_to(root_url)
       end

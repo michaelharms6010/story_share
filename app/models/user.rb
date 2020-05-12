@@ -154,8 +154,8 @@ class User < ApplicationRecord
     User.joins(:inverse_friendships).where("friendships.user_id = #{self.id} AND friendships.confirmed = 't' AND friendships.rejected = 'f' AND friendships.accepted = 't'").order("users.name DESC")
   end
 
-  def friends?(friend_user)
-    Friendship.exists?(user_id: self.id, friend_id: friend_user.id)
+  def friends?(friend)
+    Friendship.exists?(user: self, friend: friend, accepted: true, confirmed: true) && Friendship.exists?(user: friend, friend: self, accepted: true, confirmed: true)
   end
 
   # def friend_names_and_ids

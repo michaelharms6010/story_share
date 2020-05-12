@@ -12,9 +12,11 @@ span.story-feed-portrait
   == story.html_text
 
 
-- if defined?(detail) && detail
+- if defined?(detail) && detail && current_user == story.user
   - friends_answered = story.friends_answered(current_user, story.topic_id)
   = link_to "Edit", edit_story_path(story), class: "button button-primary"
   = link_to "View #{friends_answered} friend #{'story'.pluralize(friends_answered)}", topic_path(story.topic), class: "button button-secondary"
 
 hr
+
+= render 'story_comments'

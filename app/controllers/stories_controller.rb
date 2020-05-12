@@ -1,6 +1,7 @@
 class StoriesController < ApplicationController
   before_action :logged_in_user,   only: [:show, :edit, :update, :create, :index, :new]
-  before_action :correct_user,     only: [:show, :edit, :update]
+  before_action :correct_user,     only: [:edit, :update]
+  before_action :is_friend,        only: [:show]
 
   def new
     @story = Story.new
@@ -50,10 +51,14 @@ class StoriesController < ApplicationController
     params.require(:story).permit(:text, :word_count, :visibility, :topic_id)
   end
 
-
   def correct_user
     @story = Story.find(params[:id])
     redirect_to(root_url) unless current_user?(@story.user)
+  end
+
+  def is_friend
+    @story = Story.find(params[:id])
+    redirect_to(root_url) unless current_user?(@story.user) || current_user.friends?(@story.user)
   end
 
 end
