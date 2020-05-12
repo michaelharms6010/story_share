@@ -36,8 +36,8 @@ class StoriesController < ApplicationController
   end
 
   def show
-    story_id = params[:id]
-    @story = Story.find(story_id)
+    @story = Story.find(params[:id])
+    @comment = Comment.new(story: @story, user: current_user)
   end
 
   def index

@@ -19,4 +19,13 @@ span.story-feed-portrait
 
 hr
 
-= render 'story_comments'
+- if @comment.present?
+
+  h3 Comments
+
+  = form_for(@comment) do |f|
+    = f.text_area :text, placeholder: "Add a comment", class: "text-area story-new-comment"
+    = f.select :visibility, Comment.visibility_options, class: "form-control select"
+    = f.submit "Add Comment", class:"button button-primary"
+
+  = render 'story_comments', comments: story.comments
