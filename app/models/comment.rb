@@ -7,4 +7,9 @@ class Comment < ActiveRecord::Base
 
   private
 
+  # TODO: Move this into a helper (repeated in story.rb)
+  def html_text
+    "<p>" + self.text.split("\n").join("</p><p>") + "</p>"
+  end
+
 end
