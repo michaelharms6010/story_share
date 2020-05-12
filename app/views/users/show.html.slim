@@ -2,9 +2,9 @@ h1
   = @user.display_name
 
 - if @user.show_full_name
-div
-  em
-    = @user.display_name
+  div
+    em
+      = @user.display_name
 
 - if current_user?(@user)
   br
