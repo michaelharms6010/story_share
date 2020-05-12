@@ -10,11 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_28_183937) do
+ActiveRecord::Schema.define(version: 2020_05_12_221706) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
   enable_extension "plpgsql"
+
+  create_table "comments", force: :cascade do |t|
+    t.integer "story_id"
+    t.integer "commenter_id"
+    t.text "text", default: "", null: false
+    t.integer "visibility", default: 0, null: false
+    t.index ["commenter_id"], name: "index_comments_on_commenter_id"
+    t.index ["story_id"], name: "index_comments_on_story_id"
+  end
 
   create_table "friendships", force: :cascade do |t|
     t.integer "user_id"
