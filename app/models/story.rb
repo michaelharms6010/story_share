@@ -3,6 +3,8 @@ class Story < ActiveRecord::Base
   belongs_to :user
   belongs_to :topic
 
+  has_many :comments, dependent: :destroy
+
   default_scope -> { order(created_at: :desc) }
   validates :text, presence: true, length: { minimum: 1}
 
