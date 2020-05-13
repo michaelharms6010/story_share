@@ -9,8 +9,6 @@ class Comment < ActiveRecord::Base
     [["Public", 0], ["Friends Only", 1], ["Private", 2]]
   end
 
-  private
-
   # TODO: Move this into a helper (repeated in story.rb)
   def html_text
     "<p>" + self.text.split("\n").join("</p><p>") + "</p>"

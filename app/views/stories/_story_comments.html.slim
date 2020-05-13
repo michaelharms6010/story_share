@@ -1,3 +1,15 @@
 h3 Comments
 
-hr
+- comments.each do |comment|
+
+
+  hr
+  span.story-feed-portrait
+  .story-feed-byline
+    = link_to comment.user.display_name, "/users/#{comment.user.name}", class: "link_inherit_color"
+    .story-feed-publish-date
+      = comment.created_at.in_time_zone.strftime("%B %d, %Y, %l:%M%P")
+  strong = comment.user.display_name
+  br
+  p
+    == comment.html_text

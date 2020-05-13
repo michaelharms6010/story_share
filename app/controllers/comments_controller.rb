@@ -19,7 +19,7 @@ class CommentsController < ApplicationController
       flash[:success] = "Comment created!"
       redirect_to @story
     else
-      render @story, detail: true
+      render "stories/show", story: @story, detail: true
     end
   end
 

@@ -20,6 +20,7 @@ span.story-feed-portrait
   h3 Add Comment
 
   = form_for(@comment) do |f|
+    = render 'shared/error_messages', obj: @comment
     = f.text_area :text, placeholder: "Add a comment", class: "text-area story-new-comment"
     = f.select :visibility, Comment.visibility_options, class: "form-control select"
     = f.hidden_field :story_id, value: story.id
