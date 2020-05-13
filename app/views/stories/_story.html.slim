@@ -27,7 +27,7 @@ span.story-feed-portrait
     = f.hidden_field :user_id, value: current_user.id
     = f.submit "Add Comment", class:"button button-primary"
 
-  = render 'stories/story_comments', comments: story.comments
+  = render 'stories/story_comments', comments: story.comments_viewable_by(current_user)
 
 - else
   = link_to "Comment", story, class: "button button-secondary button-block"

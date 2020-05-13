@@ -19,4 +19,8 @@ class Story < ActiveRecord::Base
     Story.where(topic_id: topic_id, user_id: user.friendships.where(accepted: true).select(:friend_id)).count
   end
 
+  def comments_viewable_by(user)
+    Comment.where(story: self)
+  end
+
 end
