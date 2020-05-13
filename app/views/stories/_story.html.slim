@@ -15,7 +15,7 @@ span.story-feed-portrait
   = link_to "Edit", edit_story_path(story), class: "button button-primary"
   = link_to "View #{friends_answered} friend #{'story'.pluralize(friends_answered)}", topic_path(story.topic), class: "button button-secondary"
 
-- if @comment.present?
+- elsif @comment.present?
 
   h3 Add Comment
 
