@@ -20,7 +20,7 @@ class Story < ActiveRecord::Base
   end
 
   def comments_viewable_by(user)
-    if current_user == user
+    if self.user == user
       Comment.where(story: self)
     else
       Comment.where(story: self, visibility: 0)
