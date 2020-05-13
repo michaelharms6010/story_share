@@ -10,22 +10,25 @@ span.story-feed-portrait
 
 .story-feed-text
   == story.html_text
-
-
 - if defined?(detail) && detail && current_user == story.user
   - friends_answered = story.friends_answered(current_user, story.topic_id)
   = link_to "Edit", edit_story_path(story), class: "button button-primary"
   = link_to "View #{friends_answered} friend #{'story'.pluralize(friends_answered)}", topic_path(story.topic), class: "button button-secondary"
 
-hr
-
 - if @comment.present?
 
-  h3 Comments
+  h3 Add Comment
 
   = form_for(@comment) do |f|
     = f.text_area :text, placeholder: "Add a comment", class: "text-area story-new-comment"
     = f.select :visibility, Comment.visibility_options, class: "form-control select"
+    = f.hidden_field :story_id, value: story.id
+    = f.hidden_field :user_id, value: current_user.id
     = f.submit "Add Comment", class:"button button-primary"
 
-  = render 'story_comments', comments: story.comments
+  = render 'stories/story_comments', comments: story.comments
+
+- else
+  = link_to "Comment", story, class: "button button-secondary button-block"
+
+hr

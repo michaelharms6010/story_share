@@ -1,4 +1,4 @@
-class StoriesController < ApplicationController
+class CommentsController < ApplicationController
   before_action :logged_in_user,   only: [:update, :create]
   before_action :is_friend,     only: [:update, :create]
 
@@ -14,12 +14,12 @@ class StoriesController < ApplicationController
 
   def create
     @comment = Comment.new(comment_params)
+    @story = @comment.story
     if @comment.save
       flash[:success] = "Comment created!"
       redirect_to @story
     else
-      @topic = current_user.next_topic
-      render @story
+      render @story, detail: true
     end
   end
 
@@ -30,10 +30,9 @@ class StoriesController < ApplicationController
   end
 
   def is_friend
-    @story.find(params[:story_id])
+    @story = Story.find(params[:comment][:story_id])
     author = @story.user
-    @user = @user || User.find_by(name: params[:id].downcase)
-    if @user != current_user && current_user.friends?(@author)
+    if author != current_user && current_user.friends?(author)
       flash[:danger] = "Must be friends to do that."
       redirect_to(root_url)
     end

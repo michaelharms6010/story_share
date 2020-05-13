@@ -20,7 +20,7 @@ Rails.application.routes.draw do
 
   resources :topics,    only: [:new, :create, :show, :edit, :update, :index]
   resources :stories,   only: [:new, :create, :show, :edit, :update, :index]
-  resources :comments,    only: [:create, :edit]
+  resources :comments,  only: [:create, :edit]
 
   resources :friendships, path: "friends",    only: [:show, :update, :create, :index] do
     member do
