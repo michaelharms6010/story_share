@@ -6,7 +6,8 @@ class Comment < ActiveRecord::Base
   validates :text, presence: true, length: { minimum: 1}
 
   def self.visibility_options
-    [["Public", 0], ["Friends Only", 1], ["Private", 2]]
+    # [["Public", 0], ["Friends Only", 1], ["Private", 2]]
+    [["Public", 0], ["Private", 2]]
   end
 
   # TODO: Move this into a helper (repeated in story.rb)
