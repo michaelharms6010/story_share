@@ -4,12 +4,12 @@ h3 Comments
 
 
   hr
-  span.story-feed-portrait
-  .story-feed-byline
-    = link_to comment.user.display_name, "/users/#{comment.user.name}", class: "link_inherit_color"
-    .story-feed-publish-date
-      = comment.created_at.in_time_zone.strftime("%B %d, %Y, %l:%M%P")
-  strong = comment.user.display_name
+  = link_to "/users/#{comment.user.name}", class: "link_inherit_color" do
+    span.story-feed-portrait
+    .story-feed-byline
+      = comment.user.display_name
+      .story-feed-publish-date
+        = comment.created_at.in_time_zone.strftime("%B %d, %Y, %l:%M%P")
   br
   p
     == comment.html_text

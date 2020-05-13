@@ -21,6 +21,8 @@ ActiveRecord::Schema.define(version: 2020_05_12_221706) do
     t.integer "user_id"
     t.text "text", default: "", null: false
     t.integer "visibility", default: 0, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["story_id"], name: "index_comments_on_story_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
