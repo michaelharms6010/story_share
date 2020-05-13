@@ -32,7 +32,7 @@ class CommentsController < ApplicationController
   def is_friend
     @story = Story.find(params[:comment][:story_id])
     author = @story.user
-    if author != current_user && current_user.friends?(author)
+    if author != current_user && !current_user.friends?(author)
       flash[:danger] = "Must be friends to do that."
       redirect_to(root_url)
     end
