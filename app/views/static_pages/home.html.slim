@@ -25,8 +25,8 @@ hr
     h3
       | You have a new story prompt!
     br
-    div
-      = friends_completed_topic(topic)
+    / div
+    /   = @user.friends_completed_topic(@user.next_topic)
     div
       = link_to "START WRITING", new_story_path, class: "button"
 
