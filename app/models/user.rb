@@ -50,16 +50,16 @@ class User < ApplicationRecord
 
   # Return the number of friends who have completed a given topic and the first five names
   def friends_completed_topic(topic)
-    stories = Story.where(topic: topic, user: user.friends)
+    stories = Story.where(topic: topic, user: self.friends)
     count = stories.count
     names = stories.limit(5).joins(:user).select("users.name_formatted").map{|x| x.attributes["name_formatted"]}
-    names = ["a", "b", "c", "d", "e"]
+    # names = ["a", "b", "c", "d", "e"]
     names.append("more") if names.length > count
     {count: count, names: names}
     if count == 0
-      "You are the first of your friends to write this story."
+      "You are the first of your friends to write this story!"
     elsif count == 1 && names.length == 1
-      "Complete this story to see #{names[0]}'s response!"
+      "#{names[0]} has responded to this prompt."
     else
       "#{count} of your friends have completed this story: #{names.to_sentence({last_word_connector: ' and '})}. Post yours to see theirs!"
     end
