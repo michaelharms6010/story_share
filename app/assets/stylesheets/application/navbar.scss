@@ -104,3 +104,12 @@
   margin-top: 60px;
 }
 
+.navbar-cell-disabled {
+  color: #999;
+  &:hover {
+    text-decoration: none;
+    background-color: white;
+    color: #999;
+  }
+}
+
