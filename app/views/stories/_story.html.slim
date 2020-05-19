@@ -15,7 +15,7 @@ span.story-feed-portrait
   = link_to "Edit", edit_story_path(story), class: "button button-primary"
   = link_to "View #{friends_answered} friend #{'story'.pluralize(friends_answered)}", topic_path(story.topic), class: "button button-secondary"
 
-- elsif @comment.present?
+- if @comment.present?
 
   h3 Add Comment
 
@@ -27,9 +27,11 @@ span.story-feed-portrait
     = f.hidden_field :user_id, value: current_user.id
     = f.submit "Add Comment", class:"button button-primary"
 
-  = render 'stories/story_comments', comments: story.comments_viewable_by(current_user)
+  / = render 'stories/story_comments', comments: story.comments_viewable_by(current_user)
 
-- else
-  = link_to "Comment", story, class: "button button-secondary button-block"
+/ - else
+/   = link_to "Comment", story, class: "button button-secondary button-block"
+
+= render 'stories/story_comments', comments: story.comments_viewable_by(current_user)
 
 hr
