@@ -1,11 +1,11 @@
 -if comments.present?
 
-  h3 Comments
+  .story-comment
 
-  - comments.each do |comment|
+    h3 Comments
 
+    - comments.each do |comment|
 
-    .story-comment
 
       hr
       = link_to "/users/#{comment.user.name}", class: "link_inherit_color" do
