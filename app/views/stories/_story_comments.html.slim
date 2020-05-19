@@ -1,15 +1,20 @@
-h3 Comments
+-if comments.present?
 
-- comments.each do |comment|
+  .story-comment
+
+    h3 Comments
+
+    - comments.each do |comment|
 
 
-  hr
-  = link_to "/users/#{comment.user.name}", class: "link_inherit_color" do
-    span.story-feed-portrait
-    .story-feed-byline
-      = comment.user.display_name
-      .story-feed-publish-date
-        = comment.created_at.in_time_zone.strftime("%B %d, %Y, %l:%M%P")
-  br
-  p
-    == comment.html_text
+      hr
+      = link_to "/users/#{comment.user.name}", class: "link_inherit_color" do
+        span.story-feed-portrait
+        .story-feed-byline
+          = comment.user.display_name
+          .story-feed-publish-date
+            = comment.created_at.in_time_zone.strftime("%B %d, %Y, %l:%M%P")
+      br
+      p
+        / .story-comment declared in html_text
+        == comment.html_text

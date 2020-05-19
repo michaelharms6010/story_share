@@ -1,35 +1,39 @@
-.story-feed-heading
-  = link_to "#{story.topic.prompt}", story, class: "link_inherit_color"
-span.story-feed-portrait
-.story-feed-byline
-  = link_to story.user.display_name, "/users/#{story.user.name}", class: "link_inherit_color"
-  .story-feed-publish-date
-    = story.created_at.in_time_zone.strftime("%B %d, %Y, %l:%M%P")
+.story-feed-item
+
+  .story-feed-heading
+    = link_to "#{story.topic.prompt}", story, class: "link_inherit_color"
+  span.story-feed-portrait
+  .story-feed-byline
+    = link_to story.user.display_name, "/users/#{story.user.name}", class: "link_inherit_color"
+    .story-feed-publish-date
+      = story.created_at.in_time_zone.strftime("%B %d, %Y, %l:%M%P")
 
 
 
-.story-feed-text
-  == story.html_text
-- if defined?(detail) && detail && current_user == story.user
-  - friends_answered = story.friends_answered(current_user, story.topic_id)
-  = link_to "Edit", edit_story_path(story), class: "button button-primary"
-  = link_to "View #{friends_answered} friend #{'story'.pluralize(friends_answered)}", topic_path(story.topic), class: "button button-secondary"
+  .story-feed-text
+    == story.html_text
+  - if defined?(detail) && detail && current_user == story.user
+    - friends_answered = story.friends_answered(current_user, story.topic_id)
+    = link_to "Edit", edit_story_path(story), class: "button button-primary"
+    = link_to "View #{friends_answered} friend #{'story'.pluralize(friends_answered)}", topic_path(story.topic), class: "button button-secondary"
 
-- elsif @comment.present?
+  - if @comment.present?
 
-  h3 Add Comment
+    h3 Add Comment
 
-  = form_for(@comment) do |f|
-    = render 'shared/error_messages', obj: @comment
-    = f.text_area :text, placeholder: "Add a comment", class: "text-area story-new-comment"
-    = f.select :visibility, Comment.visibility_options, class: "form-control select"
-    = f.hidden_field :story_id, value: story.id
-    = f.hidden_field :user_id, value: current_user.id
-    = f.submit "Add Comment", class:"button button-primary"
+    = form_for(@comment) do |f|
+      = render 'shared/error_messages', obj: @comment
+      = f.text_area :text, placeholder: "Add a comment", class: "text-area story-new-comment"
+      = f.select :visibility, Comment.visibility_options, class: "form-control select"
+      = f.hidden_field :story_id, value: story.id
+      = f.hidden_field :user_id, value: current_user.id
+      = f.submit "Add Comment", class:"button button-primary"
+
+    / = render 'stories/story_comments', comments: story.comments_viewable_by(current_user)
+
+  / - else
+  /   = link_to "Comment", story, class: "button button-secondary button-block"
 
   = render 'stories/story_comments', comments: story.comments_viewable_by(current_user)
 
-- else
-  = link_to "Comment", story, class: "button button-secondary button-block"
-
-hr
+  hr
