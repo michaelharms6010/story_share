@@ -1,24 +1,30 @@
 h1
   = @user.display_name
 
+p
+  em
+    = "A list of stories by #{@user.display_name}."
+
 hr
-= link_to "friends", "/users/#{@user.name}/friends", class: "button button-primary"
+
+div
+  = link_to "friends", "/users/#{@user.name}/friends", class: "button button-primary button-inline"
+
+  - if current_user?(@user)
+    br
+    div
+      = link_to "Edit Profile", profile_edit_path, class: "button button-inline"
+  - elsif !current_user.friends?(@user)
+    br
+    = form_for(@friendship) do |f|
+      = f.hidden_field :friend_id, value: @search_friend.id
+        = f.submit "Add Friend", class:"button button-primary"
 
 
 - if @user.show_full_name
   div
     em
       = @user.display_name
-
-- if current_user?(@user)
-  br
-  div
-    = link_to "Edit Profile", profile_edit_path, class: "button"
-- elsif !current_user.friends?(@user)
-  br
-  = form_for(@friendship) do |f|
-    = f.hidden_field :friend_id, value: @search_friend.id
-    = f.submit "Add Friend", class:"btn btn-primary"
 
 
 hr
