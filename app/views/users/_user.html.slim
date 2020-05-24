@@ -5,4 +5,4 @@ div
       .link_inherit_color
         = user.name_formatted
       em
-        = "#{user.stories.length} stories"
+        = "#{user.stories.length} #{'story'.pluralize(user.stories.length)}"
