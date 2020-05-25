@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   resources :stories,   only: [:new, :create, :show, :edit, :update, :index]
   resources :comments,  only: [:create, :edit]
 
-  resources :friendships, path: "friends",    only: [:show, :update, :create, :index] do
+  resources :friendships, path: "friends",    only: [:create, :index, :confirm] do
     member do
       post :confirm, to: 'friendships#confirm'
     end

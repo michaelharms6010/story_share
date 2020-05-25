@@ -1,5 +1,5 @@
 class FriendshipsController < ApplicationController
-  before_action :logged_in_user,   only: [:show, :update, :create, :index, :search, :confirm]
+  before_action :logged_in_user,   only: [:create, :index, :confirm]
 
   def index
     @friends = current_user.friends.page(params[:page])
