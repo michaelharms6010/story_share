@@ -1,6 +1,11 @@
 
-= link_to notification do
-  = notification.user.display_name
+= link_to notification, class: "link_inherit_color" do
+  - comment = notification.comment
+  - story = comment.story
+  - author = comment.user
+  = "#{author.name_formatted} has left a comment on your story:"
+  div
+    em = story.topic.prompt
 
 
 hr
