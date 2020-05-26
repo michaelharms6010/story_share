@@ -1,6 +1,7 @@
 class User < ApplicationRecord
 
   has_many :comments  # Keep comments, even if user is destroyed
+  has_many :notifications, dependent: :destroy
   has_many :stories, dependent: :destroy
   has_many :friendships, dependent: :destroy
 
@@ -65,12 +66,12 @@ class User < ApplicationRecord
     end
   end
 
-  def add_notification(type, notification_id)
-    if type == "comment"
-      self.notifications["comment"] ||= []
-      self.notifications["comment"].append(notification_id)
-      self.save
-    end
+  def unread_notifications
+    self.notifications.order("id DESC").where(viewed: false)
+  end
+
+  def notification_count
+    self.unread_notifications.count
   end
 
   def self.time_zones_for_select

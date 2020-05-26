@@ -3,7 +3,7 @@ class CreateNotifications < ActiveRecord::Migration[6.0]
     create_table :notifications do |t|
       t.integer :user_id
 
-      t.string  :type
+      t.string  :record_type
       t.integer :record_id
 
       t.boolean :viewed, null: false, default: false
