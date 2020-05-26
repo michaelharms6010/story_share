@@ -3,6 +3,8 @@ class Comment < ActiveRecord::Base
   belongs_to :user
   belongs_to :story
 
+  has_one    :notification
+
   validates :text, presence: true, length: { minimum: 1}
 
   after_create :create_notification
@@ -18,7 +20,7 @@ class Comment < ActiveRecord::Base
   end
 
   def create_notification
-    Notification.create(record_type: "comment", record_id: self.id, user_id: self.story.user_id)
+    Notification.create(comment: self, user: self.story.user)
   end
 
 end

@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]
 
-  resources :notifications,   only: [:index]
+  resources :notifications,   only: [:index, :show]
 
   resources :topics,    only: [:new, :create, :show, :edit, :update, :index]
   resources :stories,   only: [:new, :create, :show, :edit, :update, :index]
