@@ -42,9 +42,9 @@ ActiveRecord::Schema.define(version: 2020_05_26_204317) do
 
   create_table "notifications", force: :cascade do |t|
     t.integer "user_id"
-    t.string "record_type"
-    t.integer "record_id"
+    t.string "comment_id"
     t.boolean "viewed", default: false, null: false
+    t.index ["comment_id"], name: "index_notifications_on_comment_id"
     t.index ["user_id"], name: "index_notifications_on_user_id"
     t.index ["viewed"], name: "index_notifications_on_viewed"
   end
