@@ -14,14 +14,11 @@ div
   = link_to "friends", "/users/#{@user.name}/friends", class: "button button-primary button-inline"
 
   - if current_user?(@user)
-    br
-    div
-      = link_to "Edit Profile", profile_edit_path, class: "button button-inline"
+    = link_to "Edit Profile", profile_edit_path, class: "button button-secondary button-inline"
   - elsif !current_user.friends?(@user)
-    br
     = form_for(@friendship) do |f|
       = f.hidden_field :friend_id, value: @search_friend.id
-        = f.submit "Add Friend", class:"button button-primary"
+        = f.submit "Add Friend", class:"button button-secondary button-inline"
 
 
 - if @user.show_full_name
