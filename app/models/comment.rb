@@ -12,7 +12,7 @@ class Comment < ActiveRecord::Base
 
   # TODO: Move this into a helper (repeated in story.rb)
   def html_text
-    "<p class='story-comment-text'>" + self.text.split("\n").join("</p><p>") + "</p>"
+    "<p class='story-comment-text'>" + self.text.split("\n").join("</p><p class='story-comment-text'>") + "</p>"
   end
 
 end
