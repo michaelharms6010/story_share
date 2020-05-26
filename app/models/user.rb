@@ -65,8 +65,13 @@ class User < ApplicationRecord
     end
   end
 
-
-
+  def add_notification(type, notification_id)
+    if type == "comment"
+      self.notifications["comment"] ||= []
+      self.notifications["comment"].append(notification_id)
+      self.save
+    end
+  end
 
   def self.time_zones_for_select
     time_zones = [["American Samoa", "SST"], ["Hawaii", "HST"], ["Alaska", "AKST"], ["Pacific Time (US & Canada)", "PST"], ["Mountain Time (US & Canada)", "MST"], ["Central Time (US & Canada)", "CST"], ["Eastern Time (US & Canada)", "EST"], ["Atlantic Time (Canada)", "AST"], ["Newfoundland", "NST"], ["Buenos Aires", "ART"], ["Mid-Atlantic", "GST"], ["Azores", "AZOT"], ["London", "GMT"], ["Berlin", "CET"], ["Athens", "EET"], ["Moscow", "MSK"], ["Tehran", "IRDT"], ["Samara", "SAMT"], ["Kabul", "AFT"], ["Islamabad", "PKT"], ["Mumbai", "IST"], ["Kathmandu", "NPT"], ["Dhaka", "BST"], ["Bangkok", "ICT"], ["Beijing", "CST"], ["Tokyo", "JST"], ["Adelaide", "ACST"], ["Sydney", "AET"], ["New Caledonia", "NCT"], ["Fiji", "FJT"], ["Chatham Is.", "CHAST"], ["Samoa", "WST"]]
