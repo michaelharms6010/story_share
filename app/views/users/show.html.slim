@@ -3,7 +3,10 @@ h1
 
 p
   em
-    = "A list of stories by #{@user.display_name}."
+    - if current_user?(@user)
+      = "Your stories."
+    - else
+      = "A list of stories by #{@user.display_name}."
 
 hr
 
