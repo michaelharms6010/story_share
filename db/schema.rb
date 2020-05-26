@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_12_221706) do
+ActiveRecord::Schema.define(version: 2020_05_26_165613) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -83,6 +83,7 @@ ActiveRecord::Schema.define(version: 2020_05_12_221706) do
     t.integer "invited_by"
     t.boolean "profile_completed", default: false, null: false
     t.integer "streak", default: 0, null: false
+    t.jsonb "notifications", default: {}, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["invited_by"], name: "index_users_on_invited_by"
     t.index ["name"], name: "index_users_on_name", unique: true
