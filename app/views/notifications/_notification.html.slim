@@ -1,11 +1,11 @@
 
-= link_to notification, class: "link_inherit_color" do
+- link_class = notification.viewed ? "" : " notification-unviewed"
+
+= link_to notification, class: "link_inherit_color notification #{link_class}" do
   - comment = notification.comment
   - story = comment.story
   - author = comment.user
-  = "#{author.name_formatted} has left a comment on your story:"
+  = "#{author.name_formatted} commented on your story"
   div
     em = story.topic.prompt
 
-
-hr
