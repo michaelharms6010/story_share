@@ -8,7 +8,7 @@ class NotificationsController < ApplicationController
   def show
     @notification = Notification.find(params[:id])
     @notification.update(viewed: true) if !@notification.viewed
-    redirect_to @notification.comment.story
+    redirect_to "#{story_path(@notification.comment.story)}#comments", id: "comments"
   end
 
 end
