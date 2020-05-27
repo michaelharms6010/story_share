@@ -31,8 +31,8 @@
 
     / = render 'stories/story_comments', comments: story.comments_viewable_by(current_user)
 
-  / - else
-  /   = link_to "Comment", story, class: "button button-secondary button-block"
+  - else
+    = link_to "Comment", story, class: "button button-secondary button-block"
 
   = render 'stories/story_comments', comments: story.comments_viewable_by(current_user)
 
