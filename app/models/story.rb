@@ -23,7 +23,7 @@ class Story < ActiveRecord::Base
     if self.user == user
       Comment.where(story: self)
     else
-      Comment.where(story: self, visibility: 0).or(Comment.where(story: self, user: user)).order("updated_at DESC")
+      Comment.where(story: self, visibility: 0).or(Comment.where(story: self, user: user)).order("updated_at ASC")
     end
   end
 
