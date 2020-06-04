@@ -1,4 +1,6 @@
-describe User, type: :model do
+require 'rails_helper'
+
+RSpec.describe User, type: :model do
 
   let(:user)           { create :user }
 
@@ -14,10 +16,5 @@ describe User, type: :model do
     expect(user.name_formatted).to eq "xAS"
   end
 
-  describe "block_game_profile" do
-    it "is generated on user creation" do
-      user = create(:user, name: "xAS")
-      expect(user.block_game_profile.present?).to be_truthy
-    end
-  end
+
 end
