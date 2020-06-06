@@ -10,10 +10,10 @@ RSpec.describe User, type: :model do
     end
   end
 
-  # it "saves name lowercase, formatted with capitals" do
-  #   user = create(:user, name: "xAS")
-  #   expect(user.name).to eq "xas"
-  #   expect(user.name_formatted).to eq "xAS"
-  # end
+  it "saves name lowercase, formatted with capitals" do
+    user = create(:user, name: "xAS")
+    expect(user.name).to eq "xas"
+    expect(user.name_formatted).to eq "xAS"
+  end
 
 end
